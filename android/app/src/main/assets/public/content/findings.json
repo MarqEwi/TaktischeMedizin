@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "beschreibung": "Befunde: sichtbare oder erhebbare Informationen. 'category' bestimmt, welches Assessment den Befund freischaltet (actions.json → assessment.revealCategories). 'autoReveal': true = wird ohne Untersuchung sichtbar, sobald der erzeugende Zustand aktiv ist (z. B. hörbares Schnarchen, Zyanose).",
+  "findings": [
+    { "id": "f_bleed_thigh_massive", "text": "Starke, pulsierende Blutung am Oberschenkel", "category": "inspektion", "autoReveal": false },
+    { "id": "f_gsw_thigh_entry", "text": "Einschusswunde am Oberschenkel", "category": "inspektion", "autoReveal": false },
+    { "id": "f_amputation", "text": "Traumatische Amputation des Unterschenkels mit massiver Blutung", "category": "inspektion", "autoReveal": false },
+    { "id": "f_facial_wound", "text": "Stark blutende Gesichtsverletzung, Blut läuft Richtung Mund und Nase", "category": "inspektion", "autoReveal": false },
+    { "id": "f_dazed", "text": "Patient reagiert verzögert und wirkt benommen", "category": "bewusstsein", "autoReveal": false },
+    { "id": "f_blood_pool", "text": "Wachsende Blutlache unter dem Patienten", "category": "inspektion", "autoReveal": true },
+    { "id": "f_forearm_lac", "text": "Tiefe Risswunde am Unterarm, sickernde Blutung", "category": "inspektion", "autoReveal": false },
+    { "id": "f_chest_entry", "text": "Penetrierende Wunde am Thorax (unter der Schutzausstattung)", "category": "thorax", "autoReveal": false },
+    { "id": "f_sucking_wound", "text": "Saugende Thoraxwunde – Luft tritt hörbar ein und aus", "category": "thorax", "autoReveal": false },
+    { "id": "f_breath_sound_reduced", "text": "Einseitig deutlich abgeschwächtes Atemgeräusch", "category": "auskultation", "autoReveal": false },
+    { "id": "f_breathing_labored", "text": "Angestrengte, schnelle Atmung", "category": "atmung", "autoReveal": false },
+    { "id": "f_jvd", "text": "Gestaute Halsvenen", "category": "thorax", "autoReveal": false },
+    { "id": "f_cyanosis", "text": "Zyanose – bläulich verfärbte Lippen", "category": "haut", "autoReveal": true },
+    { "id": "f_snoring", "text": "Schnarchende, gurgelnde Atemgeräusche", "category": "atmung", "autoReveal": true },
+    { "id": "f_blood_oropharynx", "text": "Blut im Mund-Rachen-Raum", "category": "atmung", "autoReveal": false },
+    { "id": "f_pulse_weak", "text": "Peripherer Puls schwach, schwer tastbar", "category": "puls", "autoReveal": false },
+    { "id": "f_pulse_absent_radial", "text": "Radialispuls nicht tastbar", "category": "puls", "autoReveal": false },
+    { "id": "f_skin_cold_sweaty", "text": "Kaltschweißige, blasse Haut", "category": "haut", "autoReveal": false },
+    { "id": "f_recap_slow", "text": "Rekapillarisierungszeit verlängert (> 2 s)", "category": "haut", "autoReveal": false },
+    { "id": "f_confused", "text": "Desorientiert, verlangsamte Antworten", "category": "bewusstsein", "autoReveal": false },
+    { "id": "f_shivering", "text": "Patient zittert, Haut fühlt sich kühl an", "category": "haut", "autoReveal": false },
+    { "id": "f_pain_severe", "text": "Patient äußert stärkste Schmerzen", "category": "bewusstsein", "autoReveal": true },
+    { "id": "f_no_life_signs", "text": "Keine Lebenszeichen – kein Puls, keine Atmung", "category": "puls", "autoReveal": true }
+  ]
+}

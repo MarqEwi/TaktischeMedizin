@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "beschreibung": "Zeitabhängige Progressionen. Jede Regel überträgt pro Minute 'deltaPerMin' Schweregrad-Punkte auf den Zielzustand, solange die Quellbedingung erfüllt ist. 'requireUncontrolled': Quelle darf nicht durch eine Maßnahme kontrolliert sein. 'unless': Regel pausiert, solange eine der genannten Bedingungen zutrifft. Ziel = Quelle ergibt eine Selbstprogression.",
+  "progressionRules": [
+    {
+      "id": "pr_massive_bleed_to_shock",
+      "beschreibung": "Unkontrollierte massive Blutung baut schnell einen Volumenmangelschock auf.",
+      "source": { "stateId": "massive_extremity_bleeding", "minSeverity": 5, "requireUncontrolled": true },
+      "target": "hypovolemic_shock",
+      "deltaPerMin": 1.5
+    },
+    {
+      "id": "pr_moderate_bleed_to_shock",
+      "beschreibung": "Unkontrollierte moderate Blutung führt langsam zu Volumenverlust.",
+      "source": { "stateId": "moderate_bleeding", "minSeverity": 3, "requireUncontrolled": true },
+      "target": "hypovolemic_shock",
+      "deltaPerMin": 0.3
+    },
+    {
+      "id": "pr_open_chest_to_tension",
+      "beschreibung": "Eine unversorgte offene Thoraxwunde treibt die Entwicklung eines Spannungspneumothorax.",
+      "source": { "stateId": "open_chest_wound", "minSeverity": 1, "requireUncontrolled": true },
+      "target": "tension_pneumothorax",
+      "deltaPerMin": 1.2
+    },
+    {
+      "id": "pr_airway_self",
+      "beschreibung": "Eine unversorgte Atemwegsverlegung nimmt langsam zu (Blut, Schwellung, Bewusstseinstrübung).",
+      "source": { "stateId": "airway_obstruction", "minSeverity": 1, "requireUncontrolled": true },
+      "target": "airway_obstruction",
+      "deltaPerMin": 0.5
+    },
+    {
+      "id": "pr_shock_stabilisiert",
+      "beschreibung": "Sind alle Blutungen kontrolliert, stabilisiert sich der Kreislauf langsam.",
+      "source": { "stateId": "hypovolemic_shock", "minSeverity": 1, "requireUncontrolled": false },
+      "target": "hypovolemic_shock",
+      "deltaPerMin": -0.25,
+      "unless": [
+        { "stateId": "massive_extremity_bleeding", "uncontrolled": true },
+        { "stateId": "moderate_bleeding", "uncontrolled": true }
+      ]
+    },
+    {
+      "id": "pr_shock_to_hypothermie",
+      "beschreibung": "Schock beschleunigt die Auskühlung (Trauma-Triade).",
+      "source": { "stateId": "hypovolemic_shock", "minSeverity": 3, "requireUncontrolled": false },
+      "target": "hypothermia_risk",
+      "deltaPerMin": 0.5
+    }
+  ]
+}

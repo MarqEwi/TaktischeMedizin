@@ -1,6 +1,6 @@
-/* Service Worker: Offline-Fähigkeit für den SGT Rechner (nur GitHub Pages).
+/* Service Worker: Offline-Fähigkeit für den TakMed Trainer (nur GitHub Pages).
    Strategie: Netzwerk zuerst (damit Updates ankommen), Cache als Offline-Fallback. */
-const CACHE = "sgt-rechner-v1";
+const CACHE = "takmed-trainer-v1";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest"];
 
 self.addEventListener("install", e => {
