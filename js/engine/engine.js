@@ -84,7 +84,9 @@ function selectInjuries(content, tpl, rng) {
       .map((id) => moi.pool.find((p) => p.injuryId === id)?.group)
       .filter(Boolean)
   );
-  let candidates = moi.pool.filter((p) => !chosen.includes(p.injuryId));
+  let candidates = moi.pool.filter(
+    (p) => !chosen.includes(p.injuryId) && (!p.group || !usedGroups.has(p.group))
+  );
   for (let i = 0; i < (tpl.injuries?.randomCount || 0) && candidates.length > 0; i++) {
     const pick = weightedPick(candidates, rng);
     chosen.push(pick.injuryId);

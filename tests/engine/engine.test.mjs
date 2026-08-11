@@ -153,6 +153,18 @@ test("Nach Chest-Seal-Anlage baut sich langsam erneut Spannung auf, Lüften entl
   assert.ok(s.states.tension_pneumothorax.severity < later, "Lüften muss die Spannung reduzieren");
 });
 
+test("CLS-Probefall: erzwungene plus eine variierende Zweitverletzung, Gruppenausschluss greift", () => {
+  const gesehen = new Set();
+  for (let seed = 1; seed <= 20; seed++) {
+    const s = createScenario({ content, caseId: "case_tta_cls", roleId: "cls", mode: "simulation", seed });
+    assert.equal(s.injuries[0], "gsw_thigh");
+    assert.equal(s.injuries.length, 2, "genau eine Zufallsverletzung zusätzlich");
+    assert.notEqual(s.injuries[1], "forearm_laceration", "gleiche Gruppe 'extremitaet' wie gsw_thigh – ausgeschlossen");
+    gesehen.add(s.injuries[1]);
+  }
+  assert.ok(gesehen.size >= 2, `Zweitverletzung muss variieren, gesehen: ${[...gesehen].join(", ")}`);
+});
+
 test("Fall endet spätestens nach maxDurationSec", () => {
   const s = createScenario({ content, caseId: "case_wache", roleId: "cls", mode: "training", seed: 3 });
   performAction(s, content, "tq_anlegen");

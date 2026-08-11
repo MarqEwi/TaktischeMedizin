@@ -7,18 +7,37 @@
       "name": "Feuergefecht auf Patrouille",
       "untertitel": "GSW Thorax und Oberschenkel unter Beschuss",
       "difficulty": 3,
-      "roles": ["cls", "medic", "paramedic"],
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
       "moiId": "moi_gsw_firefight",
       "briefing": {
         "lage": "Ihre Patrouille gerät in einen Feuerüberfall. Ein Kamerad wird getroffen und geht zu Boden. Sie stehen noch unter wirksamem Feuer (Care Under Fire).",
         "auftrag": "Versorgen Sie den Verwundeten nach TCCC-Grundsätzen. MEDEVAC ist alarmiert.",
         "patient": "Männlich, ca. 25 Jahre, Schutzweste und Helm getragen. Er schreit vor Schmerzen und hält sich das Bein."
       },
-      "injuries": { "forced": ["gsw_thigh", "gsw_thorax"], "randomCount": 0 },
+      "injuries": {
+        "forced": [
+          "gsw_thigh",
+          "gsw_thorax"
+        ],
+        "randomCount": 0
+      },
       "phases": [
-        { "phase": "CUF", "advanceOnAction": "move_to_cover", "advanceAfterSec": 240 },
-        { "phase": "TFC", "advanceAfterSec": 600 },
-        { "phase": "TACEVAC" }
+        {
+          "phase": "CUF",
+          "advanceOnAction": "move_to_cover",
+          "advanceAfterSec": 240
+        },
+        {
+          "phase": "TFC",
+          "advanceAfterSec": 600
+        },
+        {
+          "phase": "TACEVAC"
+        }
       ],
       "maxDurationSec": 1200,
       "learningObjectives": [
@@ -33,17 +52,30 @@
       "name": "IED-Anschlag auf Konvoi",
       "untertitel": "Traumatische Amputation nach Explosion",
       "difficulty": 2,
-      "roles": ["medic", "paramedic"],
+      "roles": [
+        "medic",
+        "paramedic"
+      ],
       "moiId": "moi_ied_blast",
       "briefing": {
         "lage": "Ein Fahrzeug Ihres Konvois wurde durch eine IED zerstört. Die Lage ist gesichert, kein feindliches Feuer (Tactical Field Care).",
         "auftrag": "Versorgen Sie den schwerstverletzten Insassen. TACEVAC in ca. 8 Minuten verfügbar.",
         "patient": "Männlich, ca. 30 Jahre, wurde aus dem Fahrzeug geschleudert. Massive Blutung am rechten Bein sichtbar."
       },
-      "injuries": { "forced": ["amputation_lower_leg"], "randomCount": 1 },
+      "injuries": {
+        "forced": [
+          "amputation_lower_leg"
+        ],
+        "randomCount": 1
+      },
       "phases": [
-        { "phase": "TFC", "advanceAfterSec": 480 },
-        { "phase": "TACEVAC" }
+        {
+          "phase": "TFC",
+          "advanceAfterSec": 480
+        },
+        {
+          "phase": "TACEVAC"
+        }
       ],
       "maxDurationSec": 900,
       "learningObjectives": [
@@ -57,23 +89,82 @@
       "name": "Einzelschuss am Beobachtungsposten",
       "untertitel": "Einstiegsfall: eine Verletzung, klarer Ablauf",
       "difficulty": 1,
-      "roles": ["cls", "medic", "paramedic"],
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
       "moiId": "moi_gsw_overwatch",
       "briefing": {
         "lage": "Am Beobachtungsposten fällt ein einzelner Schuss. Der Schütze ist abgezogen, die Lage ist gesichert (Tactical Field Care).",
         "auftrag": "Versorgen Sie den getroffenen Kameraden und bereiten Sie die Übergabe vor.",
         "patient": "Männlich, ca. 22 Jahre, ansprechbar, hält sich den blutenden Oberschenkel."
       },
-      "injuries": { "forced": ["gsw_thigh"], "randomCount": 0 },
+      "injuries": {
+        "forced": [
+          "gsw_thigh"
+        ],
+        "randomCount": 0
+      },
       "phases": [
-        { "phase": "TFC", "advanceAfterSec": 420 },
-        { "phase": "TACEVAC" }
+        {
+          "phase": "TFC",
+          "advanceAfterSec": 420
+        },
+        {
+          "phase": "TACEVAC"
+        }
       ],
       "maxDurationSec": 720,
       "learningObjectives": [
         "MARCH-Schema strukturiert abarbeiten",
         "Tourniquet zügig und korrekt anwenden",
         "Kreislaufüberwachung und Reassessment"
+      ]
+    },
+    {
+      "id": "case_tta_cls",
+      "name": "CLS-Probefall: Hinterhalt an der Ortskante",
+      "untertitel": "Tactical Trauma Assessment – Prüfungsniveau CLS, zweite Verletzung variiert je Durchlauf",
+      "difficulty": 2,
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "moiId": "moi_gsw_firefight",
+      "briefing": {
+        "lage": "Ihre Gruppe wird beim Passieren einer Ortskante aus einem Gebäude beschossen. Ein Kamerad geht getroffen zu Boden, Sie stehen noch unter wirksamem Feuer (Care Under Fire). Nach Feuerüberlegenheit ist mit einer gesicherten Lage zu rechnen.",
+        "auftrag": "Arbeiten Sie das vollständige Tactical Trauma Assessment nach MARCH PAWS ab: Sofortmaßnahmen unter Feuer, systematische Untersuchung, Versorgung, Wiederbeurteilung, Evakuierung anfordern und übergeben.",
+        "patient": "Männlich, ca. 24 Jahre, Schutzweste und Helm getragen. Er presst die Hände auf den Oberschenkel und ruft um Hilfe. Weitere Verletzungen sind aus der Deckung nicht beurteilbar."
+      },
+      "injuries": {
+        "forced": [
+          "gsw_thigh"
+        ],
+        "randomCount": 1
+      },
+      "phases": [
+        {
+          "phase": "CUF",
+          "advanceOnAction": "move_to_cover",
+          "advanceAfterSec": 240
+        },
+        {
+          "phase": "TFC",
+          "advanceAfterSec": 660
+        },
+        {
+          "phase": "TACEVAC"
+        }
+      ],
+      "maxDurationSec": 1080,
+      "learningObjectives": [
+        "Care Under Fire: Tourniquet über der Uniform, dann Patient in Deckung",
+        "Vollständiges Tactical Trauma Assessment nach MARCH PAWS – die zweite Verletzung ist nur durch Untersuchung zu finden",
+        "Tourniquet in TFC neu beurteilen und dokumentieren",
+        "MEDEVAC über 9-Line/MIST anfordern",
+        "Regelmäßiges Reassessment bis zur Übergabe"
       ]
     }
   ]

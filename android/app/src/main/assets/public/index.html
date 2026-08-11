@@ -363,6 +363,33 @@ table.rules td { padding: 6px 6px; border-bottom: 1px solid var(--line); }
 table.rules tr:last-child td { border-bottom: none; }
 table.rules td:last-child { text-align: right; white-space: nowrap; font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--dim); }
 
+/* ---------- Wissensfragen (Quiz) ---------- */
+.quiz-frage { font-weight: 650; margin-bottom: 8px; }
+.quiz-option {
+  display: flex; align-items: baseline; gap: 10px; width: 100%;
+  font: inherit; text-align: left; margin: 5px 0; padding: 10px 12px; cursor: pointer;
+  background: var(--surface1); color: var(--text);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  transition: border-color 0.15s ease;
+}
+.quiz-option:hover:not(:disabled) { border-color: var(--accent-deep); }
+.quiz-option:disabled { cursor: default; opacity: 0.7; }
+.quiz-option .buchstabe {
+  flex: none; width: 24px; height: 24px; border-radius: 7px;
+  background: var(--surface3); border: 1px solid var(--line);
+  font-family: var(--mono); font-weight: 700; font-size: 0.78rem;
+  display: flex; align-items: center; justify-content: center; align-self: flex-start;
+}
+.quiz-option.richtig { border-color: var(--good); opacity: 1; }
+.quiz-option.richtig .buchstabe { background: var(--good); color: #10130c; border-color: var(--good); }
+.quiz-option.falsch { border-color: var(--bad); opacity: 1; }
+.quiz-option.falsch .buchstabe { background: var(--bad); color: #10130c; border-color: var(--bad); }
+.quiz-erklaerung {
+  margin: 8px 0 2px; padding: 9px 12px; font-size: 0.85rem;
+  background: var(--bg0); border-left: 3px solid var(--info); border-radius: var(--r-sm);
+}
+.quiz-erklaerung .q { display: block; margin-top: 4px; color: var(--dim); font-size: 0.72rem; }
+
 /* ---------- Lernübersicht ---------- */
 .learn-case { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 details summary { cursor: pointer; }
@@ -495,6 +522,17 @@ dialog#skillcard-dialog::backdrop { background: rgba(5, 7, 4, 0.7); backdrop-fil
       <button class="primary" id="btn-retry">Fall wiederholen</button>
       <button class="secondary" id="btn-debrief-home">Zur Startseite</button>
       <button class="secondary" id="btn-debrief-learn">Lernübersicht</button>
+    </div>
+  </section>
+
+  <!-- 5b) Wissensfragen -->
+  <section id="screen-quiz" class="screen">
+    <h2>Wissensfragen</h2>
+    <p class="muted" id="quiz-intro"></p>
+    <div id="quiz-content"></div>
+    <div class="panel" id="quiz-result" style="display:none"></div>
+    <div class="btnrow">
+      <button class="secondary" id="btn-quiz-back">Zurück</button>
     </div>
   </section>
 

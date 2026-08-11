@@ -165,6 +165,19 @@ export function validateContent(raw) {
     if (typeof c.maxDurationSec !== "number" || c.maxDurationSec <= 0) err(`Fall "${c.id}": "maxDurationSec" fehlt.`);
   }
 
+  const caseIds = ids(raw.caseTemplates);
+  checkUnique(raw.quizFragen, "quiz");
+  for (const q of raw.quizFragen || []) {
+    requireFields(q, ["id", "frage", "erklaerung", "quelle"], "Quizfrage");
+    if (!Array.isArray(q.optionen) || q.optionen.length < 2) err(`Quizfrage "${q.id}": mindestens 2 Optionen nötig.`);
+    if (typeof q.korrekt !== "number" || q.korrekt < 0 || q.korrekt >= (q.optionen || []).length)
+      err(`Quizfrage "${q.id}": "korrekt" muss ein gültiger Options-Index sein.`);
+    if (!Array.isArray(q.caseIds) || q.caseIds.length === 0) err(`Quizfrage "${q.id}": keine caseIds.`);
+    for (const c of q.caseIds || []) {
+      if (!caseIds.has(c)) err(`Quizfrage "${q.id}": unbekannter Fall "${c}".`);
+    }
+  }
+
   checkUnique(raw.skillcards, "skillcards");
   for (const sc of raw.skillcards || []) {
     requireFields(sc, ["id", "actionId", "titel", "quelle"], "Skillcard");

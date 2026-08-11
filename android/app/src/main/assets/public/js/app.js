@@ -362,6 +362,81 @@ function renderDebrief() {
     <div class="panel"><table class="rules">${rulesRows}</table></div>
     <h2>Verlauf</h2>
     <div class="panel">${timeline}</div>`;
+
+  // Wissensfragen zum Fall (falls konfiguriert) direkt aus dem Debriefing heraus
+  const fragen = quizForCase(s.caseId);
+  if (fragen.length > 0) {
+    const panel = el("div", { className: "panel" });
+    panel.innerHTML = `<strong>Wissen festigen</strong><br><span class="muted">Zum Fall gehören ${fragen.length} Prüfungsfragen auf CLS-Niveau.</span><br>`;
+    const btn = el("button", { className: "primary", id: "btn-debrief-quiz", style: "margin-top:10px" }, `Wissensfragen starten (${fragen.length})`);
+    btn.onclick = () => openQuiz(s.caseId, "screen-debrief");
+    panel.append(btn);
+    $("#debrief-content").append(panel);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Wissensfragen (Multiple Choice, aus content/quiz.json)
+// ---------------------------------------------------------------------------
+
+function quizForCase(caseId) {
+  return state.content.quizFragen.filter((q) => q.caseIds.includes(caseId));
+}
+
+function openQuiz(caseId, returnScreen) {
+  const fragen = quizForCase(caseId);
+  const tpl = state.content.caseTemplates.get(caseId);
+  state.quiz = { caseId, returnScreen, richtig: 0, beantwortet: 0, gesamt: fragen.length };
+  $("#quiz-intro").textContent = `${tpl.name} · ${fragen.length} Fragen. Wählen Sie jeweils die beste Antwort – die Erklärung erscheint sofort.`;
+  $("#quiz-result").style.display = "none";
+  const wrap = $("#quiz-content");
+  wrap.innerHTML = "";
+
+  fragen.forEach((q, qi) => {
+    const panel = el("div", { className: "panel" });
+    panel.innerHTML = `<div class="quiz-frage">${qi + 1}. ${esc(q.frage)}</div>`;
+    const buttons = [];
+    q.optionen.forEach((opt, oi) => {
+      const btn = el("button", { className: "quiz-option" });
+      btn.innerHTML = `<span class="buchstabe">${"ABCDEF"[oi]}</span><span>${esc(opt)}</span>`;
+      btn.onclick = () => {
+        buttons.forEach((b) => (b.disabled = true));
+        buttons[q.korrekt].classList.add("richtig");
+        const richtig = oi === q.korrekt;
+        if (!richtig) btn.classList.add("falsch");
+        state.quiz.beantwortet++;
+        if (richtig) state.quiz.richtig++;
+        panel.append(
+          el("div", { className: "quiz-erklaerung" },
+            `${richtig ? "Richtig." : "Nicht ganz."} ${esc(q.erklaerung)}<span class="q">Quelle: ${esc(q.quelle)}</span>`)
+        );
+        if (state.quiz.beantwortet === state.quiz.gesamt) finishQuiz();
+      };
+      buttons.push(btn);
+      panel.append(btn);
+    });
+    wrap.append(panel);
+  });
+  show("screen-quiz");
+}
+
+function finishQuiz() {
+  const { richtig, gesamt, caseId } = state.quiz;
+  const prozent = Math.round((richtig / gesamt) * 100);
+  const box = $("#quiz-result");
+  box.style.display = "";
+  box.innerHTML = `<strong>${richtig} von ${gesamt} Fragen richtig (${prozent} %)</strong><br>
+    <span class="muted">${prozent >= 80 ? "Bestanden – sauber gearbeitet." : "Unter 80 % – Skillcards und Debriefing noch einmal durchgehen und erneut versuchen."}</span>`;
+  box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+  const results = loadResults();
+  const entry = results[caseId] || {};
+  entry.quizBest = Math.max(entry.quizBest || 0, prozent);
+  entry.quizLastAt = new Date().toISOString();
+  results[caseId] = entry;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(results));
+  } catch { /* nur lokale Statistik */ }
 }
 
 // ---------------------------------------------------------------------------
@@ -426,9 +501,10 @@ function renderLearn() {
 
   for (const tpl of state.content.caseTemplates.values()) {
     const res = results[tpl.id];
-    const stats = res
+    let stats = res && res.attempts
       ? `${res.attempts}× bearbeitet · Bestes Ergebnis: <strong>${res.bestPercent} %</strong> (${esc(res.bestGrade)})`
       : "Noch nicht bearbeitet";
+    if (res?.quizBest !== undefined) stats += ` · Wissensfragen: <strong>${res.quizBest} %</strong>`;
     const panel = el("div", { className: "panel" });
     panel.innerHTML = `
       <div class="learn-case"><div><strong>${esc(tpl.name)}</strong><br><span class="muted">${esc(tpl.untertitel)}</span></div></div>
@@ -436,6 +512,12 @@ function renderLearn() {
       <details><summary class="muted">Lernziele</summary>
         <ul>${tpl.learningObjectives.map((o) => `<li>${esc(o)}</li>`).join("")}</ul>
       </details>`;
+    const fragen = quizForCase(tpl.id);
+    if (fragen.length > 0) {
+      const btn = el("button", { className: "secondary", style: "margin-top:8px" }, `Wissensfragen üben (${fragen.length})`);
+      btn.onclick = () => openQuiz(tpl.id, "screen-learn");
+      panel.append(btn);
+    }
     wrap.append(panel);
   }
 }
@@ -462,6 +544,7 @@ function bindEvents() {
   $("#btn-debrief-home").onclick = () => show("screen-start");
   $("#btn-debrief-learn").onclick = () => { renderLearn(); show("screen-learn"); };
 
+  $("#btn-quiz-back").onclick = () => show(state.quiz?.returnScreen || "screen-learn");
   $("#sc-close").onclick = () => $("#skillcard-dialog").close();
   $("#skillcard-dialog").onclick = (e) => {
     if (e.target === e.currentTarget) e.currentTarget.close(); // Klick auf den Backdrop schließt

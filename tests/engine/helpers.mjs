@@ -18,7 +18,8 @@ export function loadRawContent() {
     progressionRules: read("progression-rules").progressionRules,
     scoringRules: read("scoring-rules").scoringRules,
     caseTemplates: read("case-templates").caseTemplates,
-    skillcards: read("skillcards").skillcards
+    skillcards: read("skillcards").skillcards,
+    quizFragen: read("quiz").quizFragen
   };
 }
 

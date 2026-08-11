@@ -83,6 +83,15 @@ Hinweis: `facial_injury_airway` liegt nicht im Pool von `moi_ied_blast` –
 die Validierung meldet das als Warnung. Entweder die Verletzung in den
 MOI-Pool aufnehmen oder ein passendes MOI anlegen.
 
+## Wissensfragen pflegen (`quiz.json`)
+
+Multiple-Choice-Fragen werden über `caseIds` an Fälle gehängt und erscheinen
+nach dem Debriefing sowie in der Lernübersicht („Wissensfragen üben“).
+Pflichtfelder: `id`, `frage`, `optionen` (min. 2), `korrekt` (0-basierter
+Index der richtigen Option), `erklaerung`, `quelle`, `caseIds`. Die
+Validierung prüft Index und Fallverweise. Eine Frage kann mehreren Fällen
+zugeordnet werden.
+
 ## Ausblick Admin-Editor
 
 Der spätere Editor ist eine Formularoberfläche über genau diesen Dateien:

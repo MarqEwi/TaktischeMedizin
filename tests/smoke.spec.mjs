@@ -19,7 +19,7 @@ test.describe("TakMed Trainer – Smoke", () => {
     await expect(page.locator("#screen-start")).toBeVisible();
     await expect(page.locator("#role-cards .card")).toHaveCount(2); // CLS + Combat Medic spielbar
     await expect(page.locator("#mode-cards .card")).toHaveCount(2);
-    await expect(page.locator("#case-cards .card")).toHaveCount(3);
+    await expect(page.locator("#case-cards .card")).toHaveCount(4);
     await expect(page.locator("#config-error")).toBeHidden();
     expect(consoleErrors).toEqual([]);
   });
@@ -103,8 +103,23 @@ test.describe("TakMed Trainer – Smoke", () => {
     await expect(page.locator("#role-cards .card").first()).toBeVisible(); // App fertig initialisiert
     await page.locator("#btn-learn").click();
     await expect(page.locator("#screen-learn")).toBeVisible();
-    await expect(page.locator("#learn-content .panel")).toHaveCount(5); // Skillcards + CLS-Ausbildungsprofil + 3 Fälle
+    await expect(page.locator("#learn-content .panel")).toHaveCount(6); // Skillcards + CLS-Ausbildungsprofil + 4 Fälle
     await expect(page.locator("#learn-content .skillcard-link")).toHaveCount(7);
     await expect(page.locator("#learn-content")).toContainText("Ausbildungsprofil Combat Lifesaver");
+  });
+
+  test("Wissensfragen: Quiz aus der Lernübersicht, Antwort mit Erklärung", async ({ page }) => {
+    await expect(page.locator("#role-cards .card").first()).toBeVisible();
+    await page.locator("#btn-learn").click();
+    await page.locator(".panel", { hasText: "CLS-Probefall" }).locator("button", { hasText: "Wissensfragen üben" }).click();
+    await expect(page.locator("#screen-quiz")).toBeVisible();
+    await expect(page.locator("#quiz-content .panel")).toHaveCount(11);
+
+    // Erste Frage (MARCH): richtige Antwort anklicken → grün + Erklärung
+    const frage1 = page.locator("#quiz-content .panel").first();
+    await frage1.locator(".quiz-option").first().click();
+    await expect(frage1.locator(".quiz-option.richtig")).toHaveCount(1);
+    await expect(frage1.locator(".quiz-erklaerung")).toContainText("Quelle");
+    await expect(frage1.locator(".quiz-option").first()).toBeDisabled();
   });
 });
