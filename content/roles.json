@@ -17,7 +17,7 @@
       "id": "cls",
       "name": "Combat Lifesaver (CLS)",
       "kurz": "CLS",
-      "beschreibung": "Erweiterte Erste Hilfe im Gefecht nach den CLS-Skillcards: Blutungskontrolle, Atemweg (Lagerung, NPA), Chest Seal, Entlastungspunktion, Wärmeerhalt, strukturiertes MARCH-Assessment.",
+      "beschreibung": "Combat Lifesaver nach TCCC-CLS-Curriculum (40 h): MARCH-PAWS-Assessment, Blutungskontrolle, Atemweg, Chest Seal und Entlastungspunktion, Schockerkennung, Wärmeerhalt, CWMP, Monitoring, Kommunikation und Evakuierungsvorbereitung.",
       "playable": true,
       "equipment": [
         "Tourniquet",
@@ -28,7 +28,31 @@
         "NPA",
         "Rettungsdecke",
         "CWMP"
-      ]
+      ],
+      "curriculum": {
+        "quelle": "TCCC CLS Course Map #TCCC-CLS-26-01 (25.01.2020), 40-Stunden-Kurs, 20 Module + Abschlussprüfung (Tactical Trauma Assessment)",
+        "module": [
+          "Grundlagen TCCC und die drei Versorgungsphasen",
+          "Sanitätsmaterial: JFAK- und CLS-Kit",
+          "Care Under Fire: Feuerüberlegenheit, Tourniquet unter Feuer, Retten und Schleppen",
+          "Tactical Field Care: Sicherung, Kommunikation, Triage",
+          "Tactical Trauma Assessment (MARCH PAWS)",
+          "Massive Blutungen: Tourniquet in TFC, Wound Packing, junktionale Blutungen",
+          "Atemweg: Lagerungsmanöver, stabile Seitenlage, NPA, Beutel-Masken-Beatmung",
+          "Atmung: Chest Seal und Entlastungspunktion (NDC)",
+          "Kreislauf und Blutungskontrolle: Druckverband, Beckenfraktur",
+          "Schockerkennung: Bewusstsein und Radialispuls",
+          "Hypothermieprophylaxe (passiv und aktiv)",
+          "Kopf- und Augenverletzungen (starrer Augenschutz)",
+          "Schmerzmittel (CWMP) und Antibiotika",
+          "Wundversorgung",
+          "Verbrennungen (Neuner-Regel, trockene Verbände)",
+          "Frakturen und Schienung",
+          "Monitoring: AVPU, Pulse, Atemfrequenz, Reassessment aller Maßnahmen",
+          "Kommunikation und Dokumentation: 9-Line, MIST, TCCC-Karte (DD 1380)",
+          "Evakuierungsverfahren und Vorbereitung des Verwundeten"
+        ]
+      }
     },
     {
       "id": "medic",

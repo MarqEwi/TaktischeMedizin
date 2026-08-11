@@ -411,6 +411,19 @@ function renderLearn() {
   }
   wrap.append(scPanel);
 
+  // Ausbildungsprofile (Curriculum je Rolle, z. B. CLS Course Map)
+  for (const role of state.content.roles.values()) {
+    if (!role.curriculum) continue;
+    const panel = el("div", { className: "panel" });
+    panel.innerHTML = `
+      <strong>Ausbildungsprofil ${esc(role.name)}</strong><br>
+      <span class="muted" style="font-size:0.8rem">${esc(role.curriculum.quelle)}</span>
+      <details style="margin-top:8px"><summary class="muted">Ausbildungsinhalte (${role.curriculum.module.length} Module)</summary>
+        <ol style="padding-left:20px;margin:8px 0">${role.curriculum.module.map((m) => `<li style="margin:3px 0;font-size:0.85rem">${esc(m)}</li>`).join("")}</ol>
+      </details>`;
+    wrap.append(panel);
+  }
+
   for (const tpl of state.content.caseTemplates.values()) {
     const res = results[tpl.id];
     const stats = res

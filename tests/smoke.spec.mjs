@@ -103,7 +103,8 @@ test.describe("TakMed Trainer – Smoke", () => {
     await expect(page.locator("#role-cards .card").first()).toBeVisible(); // App fertig initialisiert
     await page.locator("#btn-learn").click();
     await expect(page.locator("#screen-learn")).toBeVisible();
-    await expect(page.locator("#learn-content .panel")).toHaveCount(4); // Skillcards + 3 Fälle
+    await expect(page.locator("#learn-content .panel")).toHaveCount(5); // Skillcards + CLS-Ausbildungsprofil + 3 Fälle
     await expect(page.locator("#learn-content .skillcard-link")).toHaveCount(7);
+    await expect(page.locator("#learn-content")).toContainText("Ausbildungsprofil Combat Lifesaver");
   });
 });

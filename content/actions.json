@@ -985,6 +985,40 @@
           }
         ]
       }
+    },
+    {
+      "id": "medevac_anfordern",
+      "kind": "tactic",
+      "name": "MEDEVAC anfordern (9-Line)",
+      "beschreibung": "Evakuierung über die Führung anfordern: 9-Line-Meldung absetzen und Patienteninformationen als MIST-Report übermitteln (Mechanismus, Verletzungen, Zeichen, Maßnahmen).",
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
+      "timeCostSec": 60,
+      "repeatable": false,
+      "category": "S",
+      "treatment": {
+        "effects": [
+          {
+            "if": null,
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "medevac_angefordert"
+              }
+            ],
+            "feedback": "9-Line abgesetzt, MIST-Report übermittelt – die Evakuierungskette läuft an.",
+            "quality": "correct"
+          }
+        ]
+      }
     }
   ]
 }

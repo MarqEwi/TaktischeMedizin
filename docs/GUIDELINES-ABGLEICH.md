@@ -8,6 +8,10 @@ Fachliche Grundlage des Contents:
 - **TCCC-CLS-Skillcards** (Deployed-Medicine-Format):
   #TCCC-CLS-SC1-04 „Two-Handed (Windlass) Tourniquet Application – CUF" und
   #TCCC-CLS-SC1-24 „Needle Decompression of the Chest (NDC)"
+- **TCCC CLS Course Map #TCCC-CLS-26-01** (25.01.2020): 40-Stunden-Curriculum
+  des Combat Lifesaver mit 20 Modulen und abschließendem Tactical Trauma
+  Assessment – Grundlage des CLS-Rollenumfangs und des Ausbildungsprofils
+  in der Lernübersicht (`roles.json` → `curriculum`)
 
 Die PDFs selbst liegen **nicht** im Repository (Urheberrecht); dieser Abgleich
 dokumentiert, welcher Leitlinienabschnitt welches Content-Element begründet.
@@ -35,6 +39,10 @@ dokumentiert, welcher Leitlinienabschnitt welches Content-Element begründet.
 | TFC 11: Analgesie CWMP / Ketamin (AVPU dokumentieren, entwaffnen) | **Neu:** `analgesie_cwmp` (alle Rollen), `analgesie_ketamin` (Medic+), Regeln `sr_analgesie_basis`/`sr_analgesie_medic` |
 | TFC 17: keine CPR bei penetrierendem Trauma ohne Lebenszeichen | Kreislaufstillstand beendet das Szenario (Outcome „verstorben") |
 | Skillcard SC1-24 (CLS): NDC gehört zum CLS-Skillset | `entlastungspunktion` für Rolle `cls` freigegeben; `sr_needle_decomp` gilt rollenübergreifend |
+| Course Map Modul 5/18: TTA, MARCH PAWS, Monitoring & Reassessment | Assessments (AVPU, Puls, Atmung, Haut, Körpercheck) + `sr_reassessment`, `sr_tq_reassess` |
+| Course Map Modul 8: Chest Seal und NDC als CLS-Skills | bestätigt die CLS-Freigabe von `chest_seal` und `entlastungspunktion` |
+| Course Map Modul 14: CWMP-Analgesie auf CLS-Niveau | `analgesie_cwmp` für alle Rollen, Regel `sr_analgesie_basis` |
+| Course Map Modul 19 / TFC 18c: 9-Line, MIST, Evakuierung einleiten | **Neu:** `medevac_anfordern` + Regel `sr_medevac` (gilt in jedem Fall) |
 
 ## Skillcards in der App
 
@@ -60,3 +68,7 @@ genügen):
   Frakturschienung (TFC 16), abdominelle Eviszeration (TFC 13b)
 - TCCC-Karte (DD 1380) als eigenes Dokumentations-Feature
 - SHT-Vertiefung (Herniation, hypertone Kochsalzlösung, EtCO₂)
+- Aus der Course Map: Retten und Schleppen (Modul 3), junktionale
+  Blutungskontrolle (Modul 6), Beutel-Masken-Beatmung (Modul 7),
+  Augenschutz (Modul 12/13), Verbrennungen (Modul 16), Schienung
+  (Modul 17), 9-Line Zeilen 6–9 und Evakuierungsdurchführung (Modul 20)

@@ -10,8 +10,14 @@
       "stateId": "massive_extremity_bleeding",
       "minSeverity": 5,
       "options": [
-        { "actionId": "tq_anlegen", "factor": 1 },
-        { "actionId": "wound_packing", "factor": 0.7 }
+        {
+          "actionId": "tq_anlegen",
+          "factor": 1
+        },
+        {
+          "actionId": "wound_packing",
+          "factor": 0.7
+        }
       ],
       "basis": "onset",
       "fullWithinSec": 120,
@@ -27,7 +33,12 @@
       "label": "Offene Thoraxwunde verschließen (R)",
       "stateId": "open_chest_wound",
       "minSeverity": 1,
-      "options": [{ "actionId": "chest_seal", "factor": 1 }],
+      "options": [
+        {
+          "actionId": "chest_seal",
+          "factor": 1
+        }
+      ],
       "basis": "revealed",
       "fullWithinSec": 180,
       "partialWithinSec": 360,
@@ -43,8 +54,14 @@
       "stateId": "tension_pneumothorax",
       "minSeverity": 4,
       "options": [
-        { "actionId": "entlastungspunktion", "factor": 1 },
-        { "actionId": "chest_seal_lueften", "factor": 0.7 }
+        {
+          "actionId": "entlastungspunktion",
+          "factor": 1
+        },
+        {
+          "actionId": "chest_seal_lueften",
+          "factor": 0.7
+        }
       ],
       "basis": "onset",
       "fullWithinSec": 360,
@@ -61,9 +78,18 @@
       "stateId": "airway_obstruction",
       "minSeverity": 3,
       "options": [
-        { "actionId": "aufrecht_lagern", "factor": 1 },
-        { "actionId": "npa_einlegen", "factor": 1 },
-        { "actionId": "stabile_seitenlage", "factor": 0.7 }
+        {
+          "actionId": "aufrecht_lagern",
+          "factor": 1
+        },
+        {
+          "actionId": "npa_einlegen",
+          "factor": 1
+        },
+        {
+          "actionId": "stabile_seitenlage",
+          "factor": 0.7
+        }
       ],
       "basis": "onset",
       "fullWithinSec": 240,
@@ -80,9 +106,18 @@
       "stateId": "moderate_bleeding",
       "minSeverity": 2,
       "options": [
-        { "actionId": "druckverband", "factor": 1 },
-        { "actionId": "wound_packing", "factor": 0.8 },
-        { "actionId": "tq_anlegen", "factor": 0.5 }
+        {
+          "actionId": "druckverband",
+          "factor": 1
+        },
+        {
+          "actionId": "wound_packing",
+          "factor": 0.8
+        },
+        {
+          "actionId": "tq_anlegen",
+          "factor": 0.5
+        }
       ],
       "basis": "revealed",
       "fullWithinSec": 600,
@@ -98,13 +133,21 @@
       "label": "TXA bei relevantem Blutverlust (C)",
       "stateId": "hypovolemic_shock",
       "minSeverity": 3,
-      "options": [{ "actionId": "txa_geben", "factor": 1 }],
+      "options": [
+        {
+          "actionId": "txa_geben",
+          "factor": 1
+        }
+      ],
       "basis": "onset",
       "fullWithinSec": 600,
       "partialWithinSec": 900,
       "points": 10,
       "critical": false,
-      "roles": ["medic", "paramedic"],
+      "roles": [
+        "medic",
+        "paramedic"
+      ],
       "missText": "TXA wurde trotz relevantem Blutverlust nicht verabreicht."
     },
     {
@@ -113,7 +156,10 @@
       "gruppe": "massnahmen",
       "label": "Wärmeerhalt (H / PAWS)",
       "actionId": "waermeerhalt",
-      "condition": { "stateEver": "hypovolemic_shock", "minSeverity": 3 },
+      "condition": {
+        "stateEver": "hypovolemic_shock",
+        "minSeverity": 3
+      },
       "points": 10,
       "critical": false,
       "missText": "Kein Wärmeerhalt trotz Schockgeschehen – Auskühlung verschlechtert die Gerinnung."
@@ -124,7 +170,9 @@
       "gruppe": "reassessment",
       "label": "Tourniquet neu beurteilen",
       "actionId": "tq_kontrolle",
-      "condition": { "tagSet": "tq_angelegt" },
+      "condition": {
+        "tagSet": "tq_angelegt"
+      },
       "points": 10,
       "critical": false,
       "missText": "Das angelegte Tourniquet wurde nicht neu beurteilt (freilegen, Wirksamkeit und distalen Puls prüfen, Anlagezeit dokumentieren)."
@@ -137,15 +185,24 @@
       "stateId": "pain",
       "minSeverity": 5,
       "options": [
-        { "actionId": "analgesie_ketamin", "factor": 1 },
-        { "actionId": "analgesie_cwmp", "factor": 0.6 }
+        {
+          "actionId": "analgesie_ketamin",
+          "factor": 1
+        },
+        {
+          "actionId": "analgesie_cwmp",
+          "factor": 0.6
+        }
       ],
       "basis": "onset",
       "fullWithinSec": 600,
       "partialWithinSec": 900,
       "points": 10,
       "critical": false,
-      "roles": ["medic", "paramedic"],
+      "roles": [
+        "medic",
+        "paramedic"
+      ],
       "missText": "Der Patient blieb ohne Analgesie, obwohl er stärkste Schmerzen äußerte."
     },
     {
@@ -155,13 +212,21 @@
       "label": "Analgesie (CWMP)",
       "stateId": "pain",
       "minSeverity": 5,
-      "options": [{ "actionId": "analgesie_cwmp", "factor": 1 }],
+      "options": [
+        {
+          "actionId": "analgesie_cwmp",
+          "factor": 1
+        }
+      ],
       "basis": "onset",
       "fullWithinSec": 600,
       "partialWithinSec": 900,
       "points": 10,
       "critical": false,
-      "roles": ["asm", "cls"],
+      "roles": [
+        "asm",
+        "cls"
+      ],
       "missText": "Der Patient blieb ohne Analgesie – das CWMP kann durch den Verletzten selbst oder als Kameradenhilfe eingenommen werden."
     },
     {
@@ -170,7 +235,9 @@
       "gruppe": "sorgfalt",
       "label": "Vollständiger Körpercheck",
       "actionId": "assess_koerpercheck",
-      "condition": { "always": true },
+      "condition": {
+        "always": true
+      },
       "points": 10,
       "critical": false,
       "missText": "Kein vollständiger Körpercheck – verborgene Verletzungen können übersehen werden."
@@ -181,7 +248,9 @@
       "gruppe": "taktik",
       "label": "Patient in Deckung (CUF)",
       "actionId": "move_to_cover",
-      "condition": { "phaseOccurred": "CUF" },
+      "condition": {
+        "phaseOccurred": "CUF"
+      },
       "points": 10,
       "critical": false,
       "missText": "Der Patient wurde unter Beschuss nicht in Deckung verbracht."
@@ -222,6 +291,19 @@
       "pointsPool": 10,
       "penaltyPerAction": 5,
       "violationText": "Nicht indizierte Maßnahme durchgeführt."
+    },
+    {
+      "id": "sr_medevac",
+      "type": "requiredAction",
+      "gruppe": "taktik",
+      "label": "MEDEVAC-Anforderung (9-Line/MIST)",
+      "actionId": "medevac_anfordern",
+      "condition": {
+        "always": true
+      },
+      "points": 10,
+      "critical": false,
+      "missText": "Es wurde keine Evakuierung angefordert (9-Line/MIST) – ohne Meldung kommt kein MEDEVAC."
     }
   ]
 }

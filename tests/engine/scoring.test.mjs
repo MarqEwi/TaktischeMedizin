@@ -22,11 +22,23 @@ function perfectRun() {
   performAction(s, content, "txa_geben");
   performAction(s, content, "analgesie_ketamin");
   performAction(s, content, "waermeerhalt");
+  performAction(s, content, "medevac_anfordern"); // 9-Line/MIST (CLS-Modul 19, TFC 18c)
   performAction(s, content, "assess_haut_rekap");
   performAction(s, content, "assess_spo2");
   endScenario(s, content, "handover");
   return s;
 }
+
+test("Fehlende MEDEVAC-Anforderung kostet Punkte (CLS-Modul 19)", () => {
+  const s = createScenario({ content, caseId: "case_wache", roleId: "cls", mode: "simulation", seed: 3 });
+  performAction(s, content, "tq_anlegen");
+  endScenario(s, content, "handover");
+  const report = evaluate(s, content);
+  const rule = report.rules.find((r) => r.id === "sr_medevac");
+  assert.ok(rule, "MEDEVAC-Regel muss immer gelten");
+  assert.equal(rule.earned, 0);
+  assert.ok(report.missed.some((e) => e.text.includes("9-Line")));
+})
 
 test("Guter Durchlauf: Patient überlebt, hoher Score, keine kritischen Fehler", () => {
   const s = perfectRun();
