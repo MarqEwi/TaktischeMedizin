@@ -212,6 +212,7 @@ export function advanceTime(scenario, content, seconds) {
       const src = scenario.states[rule.source.stateId];
       if (!src || src.severity < rule.source.minSeverity) continue;
       if (rule.source.requireUncontrolled && src.controlled) continue;
+      if (rule.source.requireControlled && !src.controlled) continue;
       if (
         (rule.unless || []).some((u) => {
           const st = scenario.states[u.stateId];
@@ -346,6 +347,7 @@ function runAssessment(scenario, content, action) {
     measuredTexts.push(formatVital(param, value));
   }
   const parts = [];
+  if (action.assessment.staticFeedback) parts.push(action.assessment.staticFeedback);
   if (measuredTexts.length) parts.push(measuredTexts.join(", "));
   if (found.length) parts.push(`Neue Befunde: ${found.join("; ")}`);
   if (!parts.length) parts.push("Keine neuen Auffälligkeiten.");
@@ -361,7 +363,10 @@ function runTreatment(scenario, content, action) {
       continue;
     }
     const st = scenario.states[b.if.stateActive];
-    if (st && st.severity > 0 && !st.removed && st.severity >= (b.if.minSeverity ?? 1) && !st.controlled) {
+    const matches =
+      st && st.severity > 0 && !st.removed && st.severity >= (b.if.minSeverity ?? 1) &&
+      (b.if.allowControlled || !st.controlled);
+    if (matches) {
       branch = b;
       break;
     }

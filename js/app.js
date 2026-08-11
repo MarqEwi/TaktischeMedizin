@@ -207,8 +207,36 @@ function renderActions(view) {
   assessWrap.innerHTML = "";
   treatWrap.innerHTML = "";
   for (const a of view.actions) {
-    (a.kind === "assessment" ? assessWrap : treatWrap).append(actionButton(a, view));
+    const row = el("div", { className: "action-row" });
+    row.append(actionButton(a, view));
+    const card = state.content.skillcardByAction.get(a.id);
+    if (card) {
+      const info = el("button", { className: "info-btn", title: `Skillcard: ${card.titel}` }, "ⓘ");
+      info.onclick = () => openSkillcard(card);
+      row.append(info);
+    }
+    (a.kind === "assessment" ? assessWrap : treatWrap).append(row);
   }
+}
+
+// ---------------------------------------------------------------------------
+// Skillcards (Schritt-für-Schritt-Anleitungen im CLS-Skillcard-Stil)
+// ---------------------------------------------------------------------------
+
+function openSkillcard(card) {
+  $("#sc-titel").textContent = card.titel;
+  $("#sc-untertitel").textContent = card.untertitel || "";
+  const body = $("#sc-body");
+  const steps = card.schritte
+    .map((s, i) => `<div class="sc-step"><span class="nr">${String(i + 1).padStart(2, "0")}</span><span>${esc(s)}</span></div>`)
+    .join("");
+  const hinweise = (card.hinweise || [])
+    .map((h) => `<div class="sc-hinweis">${esc(h)}</div>`)
+    .join("");
+  const bild = card.bild ? `<img src="${esc(card.bild)}" alt="" loading="lazy">` : "";
+  body.innerHTML = `${bild}${steps}${hinweise}<div class="sc-quelle">Quelle: ${esc(card.quelle)}</div>`;
+  $("#skillcard-dialog").showModal();
+  body.scrollTop = 0;
 }
 
 function renderLog(view) {
@@ -371,6 +399,18 @@ function renderLearn() {
   const results = loadResults();
   const wrap = $("#learn-content");
   wrap.innerHTML = "";
+
+  // Skillcards als Nachschlagewerk
+  const scPanel = el("div", { className: "panel" });
+  scPanel.innerHTML = `<strong>Skillcards</strong><br><span class="muted">Schritt-für-Schritt-Anleitungen nach TCCC-CLS-Standard</span>`;
+  for (const card of state.content.skillcards.values()) {
+    const btn = el("button", { className: "skillcard-link" });
+    btn.innerHTML = `<span>${esc(card.titel)}<br><span class="muted" style="font-size:0.76rem">${esc(card.untertitel || "")}</span></span><span class="muted">ⓘ</span>`;
+    btn.onclick = () => openSkillcard(card);
+    scPanel.append(btn);
+  }
+  wrap.append(scPanel);
+
   for (const tpl of state.content.caseTemplates.values()) {
     const res = results[tpl.id];
     const stats = res
@@ -408,6 +448,11 @@ function bindEvents() {
   $("#btn-retry").onclick = () => { renderBriefing(); show("screen-briefing"); };
   $("#btn-debrief-home").onclick = () => show("screen-start");
   $("#btn-debrief-learn").onclick = () => { renderLearn(); show("screen-learn"); };
+
+  $("#sc-close").onclick = () => $("#skillcard-dialog").close();
+  $("#skillcard-dialog").onclick = (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.close(); // Klick auf den Backdrop schließt
+  };
 
   document.querySelectorAll(".tabs button").forEach((btn) => {
     btn.onclick = () => {

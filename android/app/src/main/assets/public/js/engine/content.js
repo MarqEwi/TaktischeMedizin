@@ -10,7 +10,8 @@ export const CONTENT_FILES = [
   "actions",
   "progression-rules",
   "scoring-rules",
-  "case-templates"
+  "case-templates",
+  "skillcards"
 ];
 
 /**
@@ -33,13 +34,15 @@ export function buildContent(raw) {
     actions: byId(raw.actions),
     caseTemplates: byId(raw.caseTemplates),
     progressionRules: raw.progressionRules,
-    scoringRules: raw.scoringRules
+    scoringRules: raw.scoringRules,
+    skillcards: byId(raw.skillcards || []),
+    skillcardByAction: new Map((raw.skillcards || []).map((sc) => [sc.actionId, sc]))
   };
 }
 
 /** Lädt alle Content-Dateien per fetch (Browser). basePath ohne abschließenden Slash. */
 export async function loadContent(basePath = "content") {
-  const [roles, mois, injuries, hiddenStates, findings, actions, progressionRules, scoringRules, caseTemplates] =
+  const [roles, mois, injuries, hiddenStates, findings, actions, progressionRules, scoringRules, caseTemplates, skillcards] =
     await Promise.all(
       CONTENT_FILES.map(async (name) => {
         const res = await fetch(`${basePath}/${name}.json`);
@@ -56,6 +59,7 @@ export async function loadContent(basePath = "content") {
     actions: actions.actions,
     progressionRules: progressionRules.progressionRules,
     scoringRules: scoringRules.scoringRules,
-    caseTemplates: caseTemplates.caseTemplates
+    caseTemplates: caseTemplates.caseTemplates,
+    skillcards: skillcards.skillcards
   });
 }

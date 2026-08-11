@@ -17,7 +17,8 @@ export function loadRawContent() {
     actions: read("actions").actions,
     progressionRules: read("progression-rules").progressionRules,
     scoringRules: read("scoring-rules").scoringRules,
-    caseTemplates: read("case-templates").caseTemplates
+    caseTemplates: read("case-templates").caseTemplates,
+    skillcards: read("skillcards").skillcards
   };
 }
 

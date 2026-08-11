@@ -24,6 +24,13 @@
       "deltaPerMin": 1.2
     },
     {
+      "id": "pr_sealed_chest_residual",
+      "beschreibung": "Auch nach Chest-Seal-Anlage kann sich langsam erneut Spannung aufbauen (TCCC 5b: Patienten nach Seal-Anlage auf Spannungspneumothorax überwachen, ggf. lüften).",
+      "source": { "stateId": "open_chest_wound", "minSeverity": 1, "requireControlled": true },
+      "target": "tension_pneumothorax",
+      "deltaPerMin": 0.3
+    },
+    {
       "id": "pr_airway_self",
       "beschreibung": "Eine unversorgte Atemwegsverlegung nimmt langsam zu (Blut, Schwellung, Bewusstseinstrübung).",
       "source": { "stateId": "airway_obstruction", "minSeverity": 1, "requireUncontrolled": true },

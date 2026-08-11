@@ -150,6 +150,9 @@ function conditionApplies(scenario, cond) {
   if (cond.phaseOccurred) {
     return scenario.phaseHistory.some((p) => p.phase === cond.phaseOccurred);
   }
+  if (cond.tagSet) {
+    return scenario.tags.includes(cond.tagSet);
+  }
   return false;
 }
 

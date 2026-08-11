@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "beschreibung": "Skillcards: Schritt-für-Schritt-Anleitungen je Maßnahme, angelehnt an die offiziellen TCCC-CLS-Skillcards. 'actionId' verknüpft die Karte mit einer Aktion (Info-Symbol im Simulationsscreen und Lernübersicht). 'quelle' benennt die Originalkarte bzw. den Leitlinienabschnitt. 'bild' ist optional (Illustration im Skillcard-Stil).",
+  "skillcards": [
+    {
+      "id": "sc_tq_anlegen",
+      "actionId": "tq_anlegen",
+      "titel": "Tourniquet-Anlage (Zwei-Hand/Windlass)",
+      "untertitel": "Care Under Fire (CUF)",
+      "quelle": "TCCC-CLS-Skillcard #TCCC-CLS-SC1-04 (31.12.2019)",
+      "bild": "img/skillcards/tq.webp",
+      "schritte": [
+        "Tourniquet aus dem IFAK bzw. der Tragetasche entnehmen.",
+        "Verletzte Extremität durch die Schlaufe des selbsthaftenden Bandes führen – oder das Band um die Extremität legen und die Spitze durch den Schlitz der Führungsschnalle fädeln.",
+        "Tourniquet oberhalb der Blutung positionieren – hoch an der Extremität, über der Uniform.",
+        "Das Band vollständig straffen: Erst wenn kein Durchhang mehr vorhanden ist, wird es zurückgeklebt und der Knebel gedreht.",
+        "Knebel drehen, bis die Blutung steht (Schritte 1–5 in unter 1 Minute).",
+        "Knebel im Sicherungsclip verriegeln.",
+        "Selbsthaftendes Band über den Knebel und zwischen die Clips führen.",
+        "Mit dem Sicherungsband fixieren.",
+        "Liegt keine weitere starke Blutung vor: Verletzten in Deckung verbringen."
+      ],
+      "hinweise": [
+        "In der Phase TFC: Tourniquet direkt auf der Haut ca. 10 cm oberhalb der Wunde anlegen, Anlagezeit markieren und dokumentieren.",
+        "Steht die Blutung nicht: zweites Tourniquet direkt neben dem ersten anlegen."
+      ]
+    },
+    {
+      "id": "sc_ndc",
+      "actionId": "entlastungspunktion",
+      "titel": "Entlastungspunktion (Needle Decompression, NDC)",
+      "untertitel": "Tactical Field Care – MARCH: R",
+      "quelle": "TCCC-CLS-Skillcard #TCCC-CLS-SC1-24 (25.01.2020)",
+      "bild": "img/skillcards/ndc.webp",
+      "schritte": [
+        "Verletzten auf Zeichen eines vermuteten Spannungspneumothorax untersuchen.",
+        "Liegt bereits ein Chest Seal: lüften (Burping) bzw. – falls fehlerhaft angebracht – erneuern.",
+        "Punktionsort festlegen: 5. ICR in der vorderen Axillarlinie oder 2. ICR in der Medioklavikularlinie.",
+        "Passendes Nadel-Katheter-System verwenden (10 G oder 14 G, ca. 8 cm); wenn möglich Punktionsstelle desinfizieren.",
+        "Luer-Lock-Kappe vom Katheter entfernen (falls vorhanden).",
+        "Nadel direkt am Oberrand der unteren Rippe im 90-Grad-Winkel zur Brustwand einführen – nicht zum Boden.",
+        "5–10 Sekunden belassen, dann die Nadel entfernen und den Katheter belassen.",
+        "Erfolg prüfen: hörbares Entweichen von Luft, Atemnot bessert sich.",
+        "Ohne Erfolg: zweite NDC mit neuem Nadel-Katheter-System am anderen Punktionsort derselben Seite.",
+        "Verletzten sitzend oder in stabiler Seitenlage mit der verletzten Seite nach unten lagern.",
+        "Fortlaufend auf wiederkehrende Atemnot reassessen.",
+        "Kehren die Symptome zurück: erneute NDC am zuvor genutzten Punktionsort mit neuem System.",
+        "Bleibt auch die zweite NDC erfolglos: weiter mit „C“ im MARCH-Schema.",
+        "Alle Befunde und Maßnahmen auf der TCCC-Karte (DD Form 1380) dokumentieren."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "sc_chest_seal",
+      "actionId": "chest_seal",
+      "titel": "Chest Seal aufbringen",
+      "untertitel": "Tactical Field Care – MARCH: R",
+      "quelle": "abgeleitet aus TCCC-Leitlinie 2026, Abschnitt 5b",
+      "bild": "img/skillcards/chest-seal.webp",
+      "schritte": [
+        "Thorax vollständig freimachen; Ein- und Austrittswunden suchen (auch Rücken und Achselregion).",
+        "Wundumgebung trocknen bzw. abwischen.",
+        "Bevorzugt ventiliertes Chest Seal beim Ausatmen direkt über der Wunde aufkleben und glattstreichen.",
+        "Weitere offene Thoraxwunden mit zusätzlichen Seals verschließen.",
+        "Verletzten auf die Entwicklung eines Spannungspneumothorax überwachen.",
+        "Bei zunehmender Atemnot, Hypoxie oder Hypotonie: Seal lüften oder entfernen, ggf. Entlastungspunktion."
+      ],
+      "hinweise": ["Ist kein ventiliertes Chest Seal verfügbar, ein nicht ventiliertes verwenden – dann besonders engmaschig überwachen."]
+    },
+    {
+      "id": "sc_wound_packing",
+      "actionId": "wound_packing",
+      "titel": "Wound Packing mit Hämostyptikum",
+      "untertitel": "Tactical Field Care – MARCH: M",
+      "quelle": "abgeleitet aus TCCC-Leitlinie 2026, Abschnitt 3b",
+      "bild": "img/skillcards/wound-packing.webp",
+      "schritte": [
+        "Kleidung entfernen und die Wunde vollständig darstellen.",
+        "Combat Gauze bzw. Hämostyptikum tief in die Wunde tamponieren und dabei gezielt Druck auf die Blutungsquelle aufbauen.",
+        "Mindestens 3 Minuten direkten Druck halten.",
+        "Steht die Blutung nicht: Gaze entfernen und mit einem neuen (gleich- oder andersartigen) Produkt erneut tamponieren.",
+        "Druckverband über der Tamponade anlegen.",
+        "Wirksamkeit regelmäßig reassessen."
+      ],
+      "hinweise": ["Für Blutungen, die einem Extremitäten-Tourniquet nicht zugänglich sind (z. B. junktional), oder als Ergänzung bei der Tourniquet-Konversion."]
+    },
+    {
+      "id": "sc_npa",
+      "actionId": "npa_einlegen",
+      "titel": "Nasopharyngealtubus (NPA) einlegen",
+      "untertitel": "Tactical Field Care – MARCH: A",
+      "quelle": "abgeleitet aus TCCC-Leitlinie 2026, Abschnitt 5e",
+      "bild": "img/skillcards/npa.webp",
+      "schritte": [
+        "Passende Größe wählen (Abstand Nasenloch bis Ohrläppchen).",
+        "Tubus mit Gleitmittel versehen.",
+        "Entlang des Nasenbodens einführen – senkrecht zum Gesicht, nicht nach oben Richtung Stirn.",
+        "Bei Widerstand nicht forcieren, sondern das andere Nasenloch nutzen.",
+        "Lage und Wirkung prüfen: Atmung freier? Bei unzureichender Atmung mit Beutel-Masken-Beatmung unterstützen."
+      ],
+      "hinweise": ["Indiziert bei beeinträchtigter Atmung bzw. wenn Lagerungsmaßnahmen den Atemweg nicht ausreichend sichern."]
+    },
+    {
+      "id": "sc_aufrecht",
+      "actionId": "aufrecht_lagern",
+      "titel": "Atemwegsschützende Lagerung (wacher Patient)",
+      "untertitel": "Tactical Field Care – MARCH: A",
+      "quelle": "abgeleitet aus TCCC-Leitlinie 2026, Abschnitt 4c/4d",
+      "bild": "img/skillcards/aufrecht.webp",
+      "schritte": [
+        "Wachen Patienten aufrecht hinsetzen lassen, bei Blutung im Gesichtsbereich vorgebeugt.",
+        "Den Patienten die Position selbst wählen lassen, die seinen Atemweg am besten schützt.",
+        "Blut und Sekret nach außen ablaufen lassen; Mund ggf. ausspucken/ausräumen lassen.",
+        "Kontinuierlich überwachen.",
+        "Bei Bewusstseinsverlust: stabile Seitenlage mit überstrecktem Kopf, Kinn weg von der Brust."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "sc_waermeerhalt",
+      "actionId": "waermeerhalt",
+      "titel": "Hypothermieprophylaxe",
+      "untertitel": "Tactical Field Care – MARCH: H",
+      "quelle": "abgeleitet aus TCCC-Leitlinie 2026, Abschnitt 7",
+      "bild": "img/skillcards/waermeerhalt.webp",
+      "schritte": [
+        "Früh und aggressiv beginnen – nicht erst bei sichtbarem Zittern.",
+        "Isolationsmaterial zwischen Verletzten und kalten Untergrund bringen.",
+        "Nasse Kleidung ersetzen, sofern möglich.",
+        "Aktive Wärmedecke auf Thoraxvorderseite und Achseln legen – nie direkt auf die Haut.",
+        "Verletzten in eine undurchlässige Außenhülle einpacken (Kopf mit abdecken).",
+        "An allen Evakuierungspunkten vor Wind und Niederschlag schützen."
+      ],
+      "hinweise": ["Schock beschleunigt die Auskühlung – Wärmeerhalt gehört zu jeder Schockbehandlung dazu."]
+    }
+  ]
+}

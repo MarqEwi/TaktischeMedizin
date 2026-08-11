@@ -7,103 +7,212 @@
       "kind": "assessment",
       "name": "Bewusstsein prüfen (AVPU)",
       "beschreibung": "Ansprechen, Schmerzreiz – Bewusstseinslage nach AVPU beurteilen.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
       "phases": [],
       "timeCostSec": 10,
       "repeatable": true,
       "category": "S",
-      "assessment": { "revealCategories": ["bewusstsein"], "measureVitals": ["avpu"] }
+      "assessment": {
+        "revealCategories": [
+          "bewusstsein"
+        ],
+        "measureVitals": [
+          "avpu"
+        ]
+      }
     },
     {
       "id": "assess_puls",
       "kind": "assessment",
       "name": "Puls tasten",
       "beschreibung": "Radialis-/Karotispuls tasten, Frequenz und Qualität beurteilen.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 15,
       "repeatable": true,
       "category": "C",
-      "assessment": { "revealCategories": ["puls"], "measureVitals": ["hr"] }
+      "assessment": {
+        "revealCategories": [
+          "puls"
+        ],
+        "measureVitals": [
+          "hr"
+        ]
+      }
     },
     {
       "id": "assess_atmung",
       "kind": "assessment",
       "name": "Atmung beurteilen",
       "beschreibung": "Atemfrequenz zählen, Atemarbeit und Atemwege beurteilen.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 30,
       "repeatable": true,
       "category": "R",
-      "assessment": { "revealCategories": ["atmung"], "measureVitals": ["rr"] }
+      "assessment": {
+        "revealCategories": [
+          "atmung"
+        ],
+        "measureVitals": [
+          "rr"
+        ]
+      }
     },
     {
       "id": "assess_thorax",
       "kind": "assessment",
       "name": "Thorax inspizieren",
       "beschreibung": "Oberkörper freimachen, Thorax auf Wunden, Symmetrie und Halsvenen untersuchen.",
-      "roles": ["cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 30,
       "repeatable": true,
       "category": "R",
-      "assessment": { "revealCategories": ["thorax"], "measureVitals": [] }
+      "assessment": {
+        "revealCategories": [
+          "thorax"
+        ],
+        "measureVitals": []
+      }
     },
     {
       "id": "assess_auskultation",
       "kind": "assessment",
       "name": "Auskultation",
       "beschreibung": "Atemgeräusche im Seitenvergleich abhören.",
-      "roles": ["medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 30,
       "repeatable": true,
       "category": "R",
-      "assessment": { "revealCategories": ["auskultation"], "measureVitals": [] }
+      "assessment": {
+        "revealCategories": [
+          "auskultation"
+        ],
+        "measureVitals": []
+      }
     },
     {
       "id": "assess_haut_rekap",
       "kind": "assessment",
       "name": "Haut & Rekap prüfen",
       "beschreibung": "Hautkolorit, Temperatur, Schweiß und Rekapillarisierungszeit prüfen.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 15,
       "repeatable": true,
       "category": "C",
-      "assessment": { "revealCategories": ["haut"], "measureVitals": [] }
+      "assessment": {
+        "revealCategories": [
+          "haut"
+        ],
+        "measureVitals": []
+      }
     },
     {
       "id": "assess_koerpercheck",
       "kind": "assessment",
       "name": "Körpercheck (Blood Sweep)",
       "beschreibung": "Systematisches Absuchen des gesamten Körpers nach verborgenen Verletzungen, einschließlich Thorax und Rücken.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 45,
       "repeatable": true,
       "category": "S",
-      "assessment": { "revealCategories": ["inspektion", "thorax"], "measureVitals": [] }
+      "assessment": {
+        "revealCategories": [
+          "inspektion",
+          "thorax"
+        ],
+        "measureVitals": []
+      }
     },
     {
       "id": "assess_spo2",
       "kind": "assessment",
       "name": "Pulsoxymetrie",
       "beschreibung": "Sauerstoffsättigung mit dem Pulsoxymeter messen.",
-      "roles": ["medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 20,
       "repeatable": true,
       "category": "R",
-      "assessment": { "revealCategories": [], "measureVitals": ["spo2", "hr"] }
+      "assessment": {
+        "revealCategories": [],
+        "measureVitals": [
+          "spo2",
+          "hr"
+        ]
+      }
     },
     {
       "id": "tq_anlegen",
       "kind": "treatment",
       "name": "Tourniquet anlegen",
-      "beschreibung": "Tourniquet hoch und fest an der verletzten Extremität anlegen.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
+      "beschreibung": "CoTCCC-empfohlenes Tourniquet anlegen: unter Feuer über der Uniform „hoch und fest“, in TFC direkt auf der Haut ca. 10 cm oberhalb der Blutung. Anlagezeit markieren.",
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
       "phases": [],
       "timeCostSec": 60,
       "repeatable": false,
@@ -111,19 +220,37 @@
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "massive_extremity_bleeding", "minSeverity": 1 },
+            "if": {
+              "stateActive": "massive_extremity_bleeding",
+              "minSeverity": 1
+            },
             "apply": [
-              { "op": "controlState", "stateId": "massive_extremity_bleeding" },
-              { "op": "addTag", "tag": "tq_angelegt" }
+              {
+                "op": "controlState",
+                "stateId": "massive_extremity_bleeding"
+              },
+              {
+                "op": "addTag",
+                "tag": "tq_angelegt"
+              }
             ],
             "feedback": "Tourniquet sitzt – die massive Blutung steht.",
             "quality": "correct"
           },
           {
-            "if": { "stateActive": "moderate_bleeding", "minSeverity": 1 },
+            "if": {
+              "stateActive": "moderate_bleeding",
+              "minSeverity": 1
+            },
             "apply": [
-              { "op": "controlState", "stateId": "moderate_bleeding" },
-              { "op": "addTag", "tag": "tq_angelegt" }
+              {
+                "op": "controlState",
+                "stateId": "moderate_bleeding"
+              },
+              {
+                "op": "addTag",
+                "tag": "tq_angelegt"
+              }
             ],
             "feedback": "Die Blutung steht – für diese Wunde wäre allerdings ein Druckverband ausreichend und schonender gewesen.",
             "quality": "partial"
@@ -140,24 +267,47 @@
     {
       "id": "wound_packing",
       "kind": "treatment",
-      "name": "Wound Packing",
-      "beschreibung": "Wunde mit (Hämostyptikum-)Gaze austamponieren und Druck halten.",
-      "roles": ["cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
-      "timeCostSec": 120,
+      "name": "Wound Packing (Hämostyptikum)",
+      "beschreibung": "Wunde mit Combat Gauze / Hämostyptikum austamponieren und mindestens 3 Minuten direkten Druck halten – für Blutungen, die für ein Extremitäten-Tourniquet nicht zugänglich sind.",
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
+      "timeCostSec": 240,
       "repeatable": false,
       "category": "M",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "massive_extremity_bleeding", "minSeverity": 1 },
-            "apply": [{ "op": "controlState", "stateId": "massive_extremity_bleeding" }],
+            "if": {
+              "stateActive": "massive_extremity_bleeding",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "controlState",
+                "stateId": "massive_extremity_bleeding"
+              }
+            ],
             "feedback": "Die Wunde ist austamponiert, die Blutung steht – bei massiver Extremitätenblutung wäre das Tourniquet der schnellere erste Zugriff gewesen.",
             "quality": "partial"
           },
           {
-            "if": { "stateActive": "moderate_bleeding", "minSeverity": 1 },
-            "apply": [{ "op": "controlState", "stateId": "moderate_bleeding" }],
+            "if": {
+              "stateActive": "moderate_bleeding",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "controlState",
+                "stateId": "moderate_bleeding"
+              }
+            ],
             "feedback": "Die Wunde ist austamponiert, die Blutung steht.",
             "quality": "correct"
           },
@@ -175,22 +325,47 @@
       "kind": "treatment",
       "name": "Druckverband anlegen",
       "beschreibung": "Druckverband über der Wunde anlegen.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 90,
       "repeatable": false,
       "category": "M",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "moderate_bleeding", "minSeverity": 1 },
-            "apply": [{ "op": "controlState", "stateId": "moderate_bleeding" }],
+            "if": {
+              "stateActive": "moderate_bleeding",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "controlState",
+                "stateId": "moderate_bleeding"
+              }
+            ],
             "feedback": "Druckverband sitzt, die Blutung ist kontrolliert.",
             "quality": "correct"
           },
           {
-            "if": { "stateActive": "massive_extremity_bleeding", "minSeverity": 1 },
-            "apply": [{ "op": "modifySeverity", "stateId": "massive_extremity_bleeding", "delta": -1 }],
+            "if": {
+              "stateActive": "massive_extremity_bleeding",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "modifySeverity",
+                "stateId": "massive_extremity_bleeding",
+                "delta": -1
+              }
+            ],
             "feedback": "Der Verband schlägt sofort durch – der Druckverband reicht bei dieser Blutung nicht aus!",
             "quality": "partial"
           },
@@ -207,17 +382,32 @@
       "id": "chest_seal",
       "kind": "treatment",
       "name": "Chest Seal aufbringen",
-      "beschreibung": "Offene Thoraxwunde mit Chest Seal luftdicht verschließen.",
-      "roles": ["cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "beschreibung": "Offene/saugende Thoraxwunde umgehend mit einem – bevorzugt ventilierten – Chest Seal verschließen. Danach auf die Entwicklung eines Spannungspneumothorax überwachen.",
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 60,
       "repeatable": false,
       "category": "R",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "open_chest_wound", "minSeverity": 1 },
-            "apply": [{ "op": "controlState", "stateId": "open_chest_wound" }],
+            "if": {
+              "stateActive": "open_chest_wound",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "controlState",
+                "stateId": "open_chest_wound"
+              }
+            ],
             "feedback": "Chest Seal klebt dicht – kein weiterer Lufteintritt über die Wunde.",
             "quality": "correct"
           },
@@ -233,24 +423,45 @@
     {
       "id": "entlastungspunktion",
       "kind": "treatment",
-      "name": "Entlastungspunktion",
-      "beschreibung": "Nadeldekompression bei Spannungspneumothorax.",
-      "roles": ["medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "name": "Entlastungspunktion (NDC)",
+      "beschreibung": "Nadeldekompression mit 14G/10G-Nadel-Katheter-System (8 cm): 5. ICR vordere Axillarlinie oder 2. ICR Medioklavikularlinie, senkrecht am Oberrand der unteren Rippe. Liegendes Chest Seal vorher lüften.",
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 45,
       "repeatable": true,
       "category": "R",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "tension_pneumothorax", "minSeverity": 1 },
-            "apply": [{ "op": "removeState", "stateId": "tension_pneumothorax" }],
+            "if": {
+              "stateActive": "tension_pneumothorax",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "removeState",
+                "stateId": "tension_pneumothorax"
+              }
+            ],
             "feedback": "Hörbares Entweichen von Luft – Atmung und Kreislauf bessern sich deutlich. Achtung: Ohne Verschluss der Thoraxwunde kann sich erneut Spannung aufbauen.",
             "quality": "correct"
           },
           {
             "if": null,
-            "apply": [{ "op": "addState", "stateId": "iatrogenic_pneumothorax", "severity": 2 }],
+            "apply": [
+              {
+                "op": "addState",
+                "stateId": "iatrogenic_pneumothorax",
+                "severity": 2
+              }
+            ],
             "feedback": "Keine Entlastung hörbar – die Punktion war nicht indiziert und hat einen kleinen Pneumothorax gesetzt.",
             "quality": "unnecessary"
           }
@@ -261,19 +472,36 @@
       "id": "npa_einlegen",
       "kind": "treatment",
       "name": "NPA einlegen",
-      "beschreibung": "Nasopharyngealtubus zur Sicherung der oberen Atemwege einlegen.",
-      "roles": ["cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "beschreibung": "Passend großen Nasopharyngealtubus einlegen – bei beeinträchtigter Atmung bzw. wenn Lagerungsmaßnahmen den Atemweg nicht ausreichend sichern.",
+      "roles": [
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 30,
       "repeatable": false,
       "category": "A",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "airway_obstruction", "minSeverity": 1 },
+            "if": {
+              "stateActive": "airway_obstruction",
+              "minSeverity": 1
+            },
             "apply": [
-              { "op": "controlState", "stateId": "airway_obstruction" },
-              { "op": "modifySeverity", "stateId": "airway_obstruction", "delta": -3 }
+              {
+                "op": "controlState",
+                "stateId": "airway_obstruction"
+              },
+              {
+                "op": "modifySeverity",
+                "stateId": "airway_obstruction",
+                "delta": -3
+              }
             ],
             "feedback": "NPA liegt – die Atmung wird freier und ruhiger.",
             "quality": "correct"
@@ -292,16 +520,33 @@
       "kind": "treatment",
       "name": "Stabile Seitenlage / Recovery Position",
       "beschreibung": "Patienten zur Atemwegssicherung auf die Seite lagern.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 20,
       "repeatable": false,
       "category": "A",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "airway_obstruction", "minSeverity": 1 },
-            "apply": [{ "op": "modifySeverity", "stateId": "airway_obstruction", "delta": -2 }],
+            "if": {
+              "stateActive": "airway_obstruction",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "modifySeverity",
+                "stateId": "airway_obstruction",
+                "delta": -2
+              }
+            ],
             "feedback": "Seitenlage hergestellt – Sekret und Blut können ablaufen, die Atmung bessert sich etwas.",
             "quality": "partial"
           },
@@ -318,27 +563,93 @@
       "id": "txa_geben",
       "kind": "treatment",
       "name": "TXA verabreichen",
-      "beschreibung": "Tranexamsäure bei relevantem Blutverlust verabreichen.",
-      "roles": ["medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "beschreibung": "2 g Tranexamsäure langsam i.v./i.o., so früh wie möglich (spätestens 3 h nach Verletzung) – bei absehbarem Transfusionsbedarf: Schock, große Amputation, penetrierendes Thoraxtrauma, schwere Blutung oder relevantes SHT.",
+      "roles": [
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 120,
       "repeatable": false,
       "category": "C",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "hypovolemic_shock", "minSeverity": 3 },
+            "if": {
+              "stateActive": "hypovolemic_shock",
+              "minSeverity": 2
+            },
             "apply": [
-              { "op": "modifySeverity", "stateId": "hypovolemic_shock", "delta": -1 },
-              { "op": "addTag", "tag": "txa_gegeben" }
+              {
+                "op": "modifySeverity",
+                "stateId": "hypovolemic_shock",
+                "delta": -1
+              },
+              {
+                "op": "addTag",
+                "tag": "txa_gegeben"
+              }
             ],
-            "feedback": "TXA läuft – Unterstützung der Gerinnung bei relevantem Blutverlust.",
+            "feedback": "TXA läuft (2 g langsam i.v.) – Unterstützung der Gerinnung bei relevantem Blutverlust.",
+            "quality": "correct"
+          },
+          {
+            "if": {
+              "stateActive": "massive_extremity_bleeding",
+              "minSeverity": 5,
+              "allowControlled": true
+            },
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "txa_gegeben"
+              }
+            ],
+            "feedback": "TXA läuft (2 g langsam i.v.) – bei schwerer Blutung/Amputation ist mit Transfusionsbedarf zu rechnen.",
+            "quality": "correct"
+          },
+          {
+            "if": {
+              "stateActive": "open_chest_wound",
+              "minSeverity": 1,
+              "allowControlled": true
+            },
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "txa_gegeben"
+              }
+            ],
+            "feedback": "TXA läuft (2 g langsam i.v.) – penetrierendes Thoraxtrauma ist eine TXA-Indikation.",
+            "quality": "correct"
+          },
+          {
+            "if": {
+              "stateActive": "tbi_concussion",
+              "minSeverity": 4,
+              "allowControlled": true
+            },
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "txa_gegeben"
+              }
+            ],
+            "feedback": "TXA läuft (2 g langsam i.v.) – bei Zeichen eines relevanten SHT indiziert.",
             "quality": "correct"
           },
           {
             "if": null,
-            "apply": [{ "op": "addTag", "tag": "txa_gegeben" }],
-            "feedback": "TXA verabreicht – ein relevanter Schockzustand liegt derzeit nicht vor.",
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "txa_gegeben"
+              }
+            ],
+            "feedback": "TXA verabreicht – eine TXA-Indikation (Schock, schwere Blutung, penetrierendes Thoraxtrauma, SHT) liegt derzeit nicht vor.",
             "quality": "unnecessary"
           }
         ]
@@ -348,29 +659,296 @@
       "id": "waermeerhalt",
       "kind": "treatment",
       "name": "Wärmeerhalt herstellen",
-      "beschreibung": "Patienten vor Auskühlung schützen (Rettungsdecke, Isolierung vom Boden).",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["TFC", "TACEVAC"],
+      "beschreibung": "Früh und aggressiv Wärmeverlust verhindern: Isolierung vom kalten Boden, nasse Kleidung ersetzen, aktive Wärmedecke auf Thoraxvorderseite/Achseln, undurchlässige Außenhülle.",
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
       "timeCostSec": 60,
       "repeatable": false,
       "category": "H",
       "treatment": {
         "effects": [
           {
-            "if": { "stateActive": "hypothermia_risk", "minSeverity": 1 },
+            "if": {
+              "stateActive": "hypothermia_risk",
+              "minSeverity": 1
+            },
             "apply": [
-              { "op": "controlState", "stateId": "hypothermia_risk" },
-              { "op": "modifySeverity", "stateId": "hypothermia_risk", "delta": -2 },
-              { "op": "addTag", "tag": "waermeerhalt" }
+              {
+                "op": "controlState",
+                "stateId": "hypothermia_risk"
+              },
+              {
+                "op": "modifySeverity",
+                "stateId": "hypothermia_risk",
+                "delta": -2
+              },
+              {
+                "op": "addTag",
+                "tag": "waermeerhalt"
+              }
             ],
             "feedback": "Patient ist eingepackt und vom Boden isoliert – die Auskühlung ist gestoppt.",
             "quality": "correct"
           },
           {
             "if": null,
-            "apply": [{ "op": "addTag", "tag": "waermeerhalt" }],
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "waermeerhalt"
+              }
+            ],
             "feedback": "Wärmeerhalt vorsorglich hergestellt.",
             "quality": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tq_kontrolle",
+      "kind": "assessment",
+      "name": "Tourniquet neu beurteilen",
+      "beschreibung": "Nach TQ-Anlage: Wunde freilegen, Wirksamkeit prüfen (Blutung steht, distaler Puls fehlt), Tourniquet deutlich mit Anlagezeit kennzeichnen und auf der TCCC-Karte dokumentieren.",
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
+      "timeCostSec": 30,
+      "repeatable": true,
+      "category": "M",
+      "assessment": {
+        "revealCategories": [
+          "inspektion"
+        ],
+        "measureVitals": [],
+        "staticFeedback": "Tourniquet freigelegt und geprüft, Anlagezeit markiert und dokumentiert."
+      }
+    },
+    {
+      "id": "chest_seal_lueften",
+      "kind": "treatment",
+      "name": "Chest Seal lüften (Burping)",
+      "beschreibung": "Liegendes Chest Seal kurz anheben bzw. Ventil freimachen, damit Überdruck entweichen kann – erste Maßnahme bei Verdacht auf Spannungspneumothorax nach Seal-Anlage.",
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
+      "timeCostSec": 20,
+      "repeatable": true,
+      "category": "R",
+      "treatment": {
+        "effects": [
+          {
+            "if": {
+              "stateActive": "tension_pneumothorax",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "modifySeverity",
+                "stateId": "tension_pneumothorax",
+                "delta": -4
+              }
+            ],
+            "feedback": "Chest Seal kurz gelüftet – Luft entweicht hörbar, die Atmung wird freier. Weiter engmaschig überwachen.",
+            "quality": "correct"
+          },
+          {
+            "if": null,
+            "apply": [],
+            "feedback": "Chest Seal gelüftet – kein relevanter Überdruck feststellbar.",
+            "quality": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aufrecht_lagern",
+      "kind": "treatment",
+      "name": "Aufrecht sitzen lassen",
+      "beschreibung": "Wachen Patienten die Position einnehmen lassen, die den Atemweg am besten schützt – aufrecht sitzend, ggf. vorgebeugt (v. a. bei Gesichtsverletzungen mit Blutung).",
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
+      "timeCostSec": 15,
+      "repeatable": false,
+      "category": "A",
+      "treatment": {
+        "effects": [
+          {
+            "if": {
+              "stateActive": "airway_obstruction",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "controlState",
+                "stateId": "airway_obstruction"
+              },
+              {
+                "op": "modifySeverity",
+                "stateId": "airway_obstruction",
+                "delta": -2
+              }
+            ],
+            "feedback": "Patient sitzt aufrecht und vorgebeugt – Blut läuft nach außen ab, die Atmung wird deutlich freier.",
+            "quality": "correct"
+          },
+          {
+            "if": null,
+            "apply": [],
+            "feedback": "Patient in bequemer, atemwegsschützender Position gelagert.",
+            "quality": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "id": "analgesie_cwmp",
+      "kind": "treatment",
+      "name": "CWMP-Analgesie (oral)",
+      "beschreibung": "TCCC Combat Wound Medication Pack einnehmen lassen (Paracetamol, Meloxicam, Suzetrigin) – nur bei wachem, schluckfähigem Patienten.",
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
+      "timeCostSec": 60,
+      "repeatable": false,
+      "category": "S",
+      "treatment": {
+        "effects": [
+          {
+            "if": {
+              "stateActive": "pain",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "modifySeverity",
+                "stateId": "pain",
+                "delta": -3
+              },
+              {
+                "op": "addTag",
+                "tag": "cwmp_gegeben"
+              }
+            ],
+            "feedback": "CWMP eingenommen – die Schmerzen werden erträglicher, der Patient bleibt ansprechbar.",
+            "quality": "correct"
+          },
+          {
+            "if": null,
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "cwmp_gegeben"
+              }
+            ],
+            "feedback": "CWMP gegeben – relevante Schmerzen bestehen derzeit nicht.",
+            "quality": "unnecessary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "analgesie_ketamin",
+      "kind": "treatment",
+      "name": "Ketamin-Analgesie",
+      "beschreibung": "Ketamin nach TCCC-Schema (z. B. 25 mg langsam i.v./i.o. oder 50 mg i.n.). Vorher AVPU dokumentieren, Patienten entwaffnen; Atemweg, Atmung und Kreislauf engmaschig überwachen.",
+      "roles": [
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "TFC",
+        "TACEVAC"
+      ],
+      "timeCostSec": 90,
+      "repeatable": true,
+      "category": "S",
+      "treatment": {
+        "effects": [
+          {
+            "if": {
+              "stateActive": "pain",
+              "minSeverity": 4
+            },
+            "apply": [
+              {
+                "op": "modifySeverity",
+                "stateId": "pain",
+                "delta": -6
+              },
+              {
+                "op": "addTag",
+                "tag": "ketamin_gegeben"
+              }
+            ],
+            "feedback": "Ketamin wirkt – Schmerzniveau deutlich reduziert, Atemantrieb und Schutzreflexe bleiben erhalten. Patient wurde entwaffnet, AVPU vorher dokumentiert.",
+            "quality": "correct"
+          },
+          {
+            "if": {
+              "stateActive": "pain",
+              "minSeverity": 1
+            },
+            "apply": [
+              {
+                "op": "modifySeverity",
+                "stateId": "pain",
+                "delta": -3
+              },
+              {
+                "op": "addTag",
+                "tag": "ketamin_gegeben"
+              }
+            ],
+            "feedback": "Ketamin gegeben – bei diesem Schmerzniveau hätte das orale CWMP genügt.",
+            "quality": "partial"
+          },
+          {
+            "if": null,
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "ketamin_gegeben"
+              }
+            ],
+            "feedback": "Ketamin ohne relevante Schmerzsymptomatik – nicht indiziert.",
+            "quality": "unnecessary"
           }
         ]
       }
@@ -380,8 +958,15 @@
       "kind": "tactic",
       "name": "Patienten in Deckung verbringen",
       "beschreibung": "Patienten aus dem wirksamen Feuer in Deckung bringen – Voraussetzung für jede weitere Versorgung.",
-      "roles": ["asm", "cls", "medic", "paramedic"],
-      "phases": ["CUF"],
+      "roles": [
+        "asm",
+        "cls",
+        "medic",
+        "paramedic"
+      ],
+      "phases": [
+        "CUF"
+      ],
       "timeCostSec": 30,
       "repeatable": false,
       "category": "S",
@@ -389,7 +974,12 @@
         "effects": [
           {
             "if": null,
-            "apply": [{ "op": "addTag", "tag": "in_deckung" }],
+            "apply": [
+              {
+                "op": "addTag",
+                "tag": "in_deckung"
+              }
+            ],
             "feedback": "Patient ist in Deckung – die eigentliche Versorgung kann beginnen.",
             "quality": "correct"
           }

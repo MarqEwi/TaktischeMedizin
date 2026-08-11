@@ -42,7 +42,7 @@ test.describe("TakMed Trainer – Smoke", () => {
 
     // Behandeln: Tourniquet, dann Puls messen
     await page.locator(".tabs button", { hasText: "Maßnahmen" }).click();
-    await page.locator("#tab-treat .action-btn", { hasText: "Tourniquet" }).click();
+    await page.locator("#tab-treat .action-btn", { hasText: "Tourniquet anlegen" }).click();
     await expect(page.locator("#sim-feedback")).toContainText("Blutung steht");
     await page.locator(".tabs button", { hasText: "Untersuchen" }).click();
     await page.locator("#tab-assess .action-btn", { hasText: "Puls tasten" }).click();
@@ -57,15 +57,31 @@ test.describe("TakMed Trainer – Smoke", () => {
     expect(consoleErrors).toEqual([]);
   });
 
-  test("Rollenmodell: CLS sieht keine Medic-Maßnahmen", async ({ page }) => {
+  test("Rollenmodell: CLS hat Skillcard-Maßnahmen (inkl. NDC), aber keine Medic-Maßnahmen", async ({ page }) => {
     await page.locator("#role-cards .card", { hasText: "Combat Lifesaver" }).click();
     await page.locator("#mode-cards .card", { hasText: "Simulationsmodus" }).click();
     await page.locator("#case-cards .card", { hasText: "Feuergefecht" }).click();
     await page.locator("#btn-to-briefing").click();
     await page.locator("#btn-start-sim").click();
     await page.locator(".tabs button", { hasText: "Maßnahmen" }).click();
-    await expect(page.locator("#tab-treat")).not.toContainText("Entlastungspunktion");
+    await expect(page.locator("#tab-treat")).toContainText("Entlastungspunktion"); // CLS-Skillcard SC1-24
+    await expect(page.locator("#tab-treat")).not.toContainText("TXA");
     await expect(page.locator("#tab-treat")).toContainText("Tourniquet");
+  });
+
+  test("Skillcard-Dialog öffnet sich über das Info-Symbol", async ({ page }) => {
+    await page.locator("#role-cards .card", { hasText: "Combat Lifesaver" }).click();
+    await page.locator("#mode-cards .card", { hasText: "Trainingsmodus" }).click();
+    await page.locator("#case-cards .card", { hasText: "Einzelschuss" }).click();
+    await page.locator("#btn-to-briefing").click();
+    await page.locator("#btn-start-sim").click();
+    await page.locator(".tabs button", { hasText: "Maßnahmen" }).click();
+    await page.locator(".action-row", { hasText: "Tourniquet anlegen" }).locator(".info-btn").click();
+    await expect(page.locator("#skillcard-dialog")).toBeVisible();
+    await expect(page.locator("#sc-titel")).toContainText("Tourniquet");
+    await expect(page.locator("#sc-body")).toContainText("Knebel");
+    await page.locator("#sc-close").click();
+    await expect(page.locator("#skillcard-dialog")).toBeHidden();
   });
 
   test("localStorage enthält nur Schlüssel mit takmed_-Präfix", async ({ page }) => {
@@ -83,10 +99,11 @@ test.describe("TakMed Trainer – Smoke", () => {
     for (const key of keys) expect(key).toMatch(/^takmed_/);
   });
 
-  test("Lernübersicht zeigt alle Fälle", async ({ page }) => {
+  test("Lernübersicht zeigt Skillcards und alle Fälle", async ({ page }) => {
     await expect(page.locator("#role-cards .card").first()).toBeVisible(); // App fertig initialisiert
     await page.locator("#btn-learn").click();
     await expect(page.locator("#screen-learn")).toBeVisible();
-    await expect(page.locator("#learn-content .panel")).toHaveCount(3);
+    await expect(page.locator("#learn-content .panel")).toHaveCount(4); // Skillcards + 3 Fälle
+    await expect(page.locator("#learn-content .skillcard-link")).toHaveCount(7);
   });
 });

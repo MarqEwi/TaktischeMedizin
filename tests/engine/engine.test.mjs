@@ -81,12 +81,14 @@ test("Entlastungspunktion ohne Indikation erzeugt Komplikation und zählt als un
   assert.equal(s.unnecessaryLog.length, 1);
 });
 
-test("Rollenfreigabe: CLS darf nicht punktieren, Aktion erscheint nicht in der View", () => {
+test("Rollenfreigabe: CLS darf punktieren (CLS-Skillcard SC1-24), aber kein TXA geben", () => {
   const s = createScenario({ content, caseId: "case_feuergefecht", roleId: "cls", mode: "training", seed: 42 });
-  const res = performAction(s, content, "entlastungspunktion");
-  assert.equal(res.ok, false);
   const view = getView(s, content);
-  assert.ok(!view.actions.some((a) => a.id === "entlastungspunktion"));
+  assert.ok(view.actions.some((a) => a.id === "entlastungspunktion"), "NDC gehört zum CLS-Skillset");
+  const res = performAction(s, content, "txa_geben");
+  assert.equal(res.ok, false, "TXA bleibt Medic/Paramedic vorbehalten");
+  assert.ok(!view.actions.some((a) => a.id === "txa_geben"));
+  assert.ok(!view.actions.some((a) => a.id === "assess_auskultation"));
 });
 
 test("Phasenlogik: CUF endet durch 'in Deckung verbringen', Verstoß wird protokolliert", () => {
@@ -134,6 +136,21 @@ test("Wiederholte Messung nach Verlauf liefert aktualisierte Werte (Reassessment
   const hr2 = s.measured.hr.value;
   assert.ok(!s.ended, "Patient darf in diesem Zeitfenster nicht sterben");
   assert.ok(hr2 > hr1, `Herzfrequenz muss nach Verschlechterung höher gemessen werden (${hr1} → ${hr2})`);
+});
+
+test("Nach Chest-Seal-Anlage baut sich langsam erneut Spannung auf, Lüften entlastet (Leitlinie 5b)", () => {
+  const s = newScenario();
+  performAction(s, content, "tq_anlegen");
+  performAction(s, content, "move_to_cover");
+  performAction(s, content, "assess_koerpercheck");
+  performAction(s, content, "chest_seal");
+  const afterSeal = s.states.tension_pneumothorax?.severity ?? 0;
+  advanceTime(s, content, 300);
+  const later = s.states.tension_pneumothorax.severity;
+  assert.ok(later > afterSeal, `Residualprogression erwartet (${afterSeal} → ${later})`);
+  const res = performAction(s, content, "chest_seal_lueften");
+  assert.equal(res.quality, "correct");
+  assert.ok(s.states.tension_pneumothorax.severity < later, "Lüften muss die Spannung reduzieren");
 });
 
 test("Fall endet spätestens nach maxDurationSec", () => {

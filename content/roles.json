@@ -8,23 +8,41 @@
       "kurz": "ASM",
       "beschreibung": "Basisniveau: Selbst- und Kameradenhilfe. Tourniquet und einfachste Maßnahmen.",
       "playable": false,
-      "equipment": ["Tourniquet", "Verbandpäckchen"]
+      "equipment": [
+        "Tourniquet",
+        "Verbandpäckchen"
+      ]
     },
     {
       "id": "cls",
       "name": "Combat Lifesaver (CLS)",
       "kurz": "CLS",
-      "beschreibung": "Erweiterte Erste Hilfe im Gefecht: Blutungskontrolle, Atemweg (NPA), Chest Seal, Wärmeerhalt, strukturiertes MARCH-Assessment.",
+      "beschreibung": "Erweiterte Erste Hilfe im Gefecht nach den CLS-Skillcards: Blutungskontrolle, Atemweg (Lagerung, NPA), Chest Seal, Entlastungspunktion, Wärmeerhalt, strukturiertes MARCH-Assessment.",
       "playable": true,
-      "equipment": ["Tourniquet", "Wound-Packing-Gaze", "Druckverband", "Chest Seal", "NPA", "Rettungsdecke"]
+      "equipment": [
+        "Tourniquet",
+        "Wound-Packing-Gaze",
+        "Druckverband",
+        "Chest Seal",
+        "Entlastungskanüle",
+        "NPA",
+        "Rettungsdecke",
+        "CWMP"
+      ]
     },
     {
       "id": "medic",
       "name": "Combat Medic",
       "kurz": "Medic",
-      "beschreibung": "Sanitätspersonal: zusätzlich Auskultation, Pulsoxymetrie, Entlastungspunktion, TXA.",
+      "beschreibung": "Sanitätspersonal: zusätzlich Auskultation, Pulsoxymetrie, TXA und Ketamin-Analgesie.",
       "playable": true,
-      "equipment": ["CLS-Ausstattung", "Stethoskop", "Pulsoxymeter", "Entlastungskanüle", "TXA"]
+      "equipment": [
+        "CLS-Ausstattung",
+        "Stethoskop",
+        "Pulsoxymeter",
+        "Entlastungskanüle",
+        "TXA"
+      ]
     },
     {
       "id": "paramedic",
@@ -32,7 +50,10 @@
       "kurz": "Paramedic",
       "beschreibung": "Erweitertes Niveau (im MVP wie Combat Medic; vorbereitet für eigene Maßnahmen und Fälle).",
       "playable": false,
-      "equipment": ["Medic-Ausstattung", "erweiterte Atemwegs- und Kreislaufmaßnahmen"]
+      "equipment": [
+        "Medic-Ausstattung",
+        "erweiterte Atemwegs- und Kreislaufmaßnahmen"
+      ]
     }
   ]
 }

@@ -165,5 +165,12 @@ export function validateContent(raw) {
     if (typeof c.maxDurationSec !== "number" || c.maxDurationSec <= 0) err(`Fall "${c.id}": "maxDurationSec" fehlt.`);
   }
 
+  checkUnique(raw.skillcards, "skillcards");
+  for (const sc of raw.skillcards || []) {
+    requireFields(sc, ["id", "actionId", "titel", "quelle"], "Skillcard");
+    if (!actionIds.has(sc.actionId)) err(`Skillcard "${sc.id}": unbekannte Aktion "${sc.actionId}".`);
+    if (!Array.isArray(sc.schritte) || sc.schritte.length === 0) err(`Skillcard "${sc.id}": keine Schritte definiert.`);
+  }
+
   return { errors, warnings };
 }
