@@ -47,13 +47,22 @@ const MODES = [
   { id: "simulation", name: "Simulationsmodus", desc: "Ohne Hilfen; Auswertung erst im Debriefing – zum Prüfen." }
 ];
 
+// Kleine Inline-Piktogramme (Stroke-SVG), damit keine externen Assets nötig sind
+const GLYPHS = {
+  cls: '<svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 7.7-8 9-4.8-1.3-8-4.5-8-9V6z"/><path d="M12 8v6M9 11h6"/></svg>',
+  medic: '<svg viewBox="0 0 24 24"><path d="M6 3v5a6 6 0 0 0 12 0V3"/><path d="M12 14v3a4 4 0 0 0 8 0v-1"/><circle cx="20" cy="14" r="2"/></svg>',
+  training: '<svg viewBox="0 0 24 24"><path d="M4 6h9a4 4 0 0 1 4 4v9"/><path d="M4 6v13h9"/><path d="M21 3l-4 4"/><path d="M17 3h4v4"/></svg>',
+  simulation: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>'
+};
+
 function renderStart() {
   const roleWrap = $("#role-cards");
   roleWrap.innerHTML = "";
   for (const role of state.content.roles.values()) {
     if (!role.playable) continue;
     const btn = el("button", { className: "card" + (state.roleId === role.id ? " selected" : "") });
-    btn.innerHTML = `<div class="title">${esc(role.name)}</div><div class="desc">${esc(role.beschreibung)}</div>`;
+    btn.innerHTML = `<span class="glyph">${GLYPHS[role.id] || GLYPHS.cls}</span>
+      <div class="title">${esc(role.name)}</div><div class="desc">${esc(role.beschreibung)}</div>`;
     btn.onclick = () => { state.roleId = role.id; renderStart(); };
     roleWrap.append(btn);
   }
@@ -62,7 +71,8 @@ function renderStart() {
   modeWrap.innerHTML = "";
   for (const mode of MODES) {
     const btn = el("button", { className: "card" + (state.mode === mode.id ? " selected" : "") });
-    btn.innerHTML = `<div class="title">${esc(mode.name)}</div><div class="desc">${esc(mode.desc)}</div>`;
+    btn.innerHTML = `<span class="glyph">${GLYPHS[mode.id]}</span>
+      <div class="title">${esc(mode.name)}</div><div class="desc">${esc(mode.desc)}</div>`;
     btn.onclick = () => { state.mode = mode.id; renderStart(); };
     modeWrap.append(btn);
   }
@@ -183,7 +193,9 @@ function actionButton(a, view) {
   const btn = el("button", { className: "action-btn", disabled: a.disabled });
   const done = a.done && !a.repeatable ? " ✓" : "";
   const warn = a.phaseWarning ? `<span class="warnphase">⚠ nicht für Phase ${esc(view.phase)} vorgesehen</span>` : "";
-  btn.innerHTML = `<span><strong>${esc(a.name)}</strong>${done}<br><span class="muted" style="font-size:0.78rem">${esc(a.beschreibung)}</span> ${warn}</span>
+  btn.innerHTML = `<span class="chip chip-${esc(a.category)}">${esc(a.category)}</span>
+    <span class="body"><span class="name">${esc(a.name)}${done}</span>
+    <span class="desc">${esc(a.beschreibung)}</span>${warn}</span>
     <span class="cost">${a.timeCostSec} s</span>`;
   btn.onclick = () => runAction(a.id);
   return btn;
@@ -287,13 +299,32 @@ function renderDebrief() {
     })
     .join("");
 
+  // Score-Ring (SVG): Kreisumfang 2·π·r, Füllstand über stroke-dashoffset
+  const R = 52;
+  const C = 2 * Math.PI * R;
+  const offset = C * (1 - r.score.percent / 100);
+  const ring = `
+    <div class="score-ring">
+      <svg width="116" height="116" viewBox="0 0 116 116" aria-hidden="true">
+        <circle class="track" cx="58" cy="58" r="${R}" fill="none" stroke-width="9"/>
+        <circle class="fill" cx="58" cy="58" r="${R}" fill="none" stroke-width="9" stroke-linecap="round"
+          stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"/>
+      </svg>
+      <div class="num">${r.score.percent}<small> %</small></div>
+    </div>`;
+
   $("#debrief-content").innerHTML = `
     <h2>Debriefing</h2>
     <div class="outcome-banner ${outcomeClass}">${esc(r.outcome.text)}</div>
     <div class="panel">
-      <p style="font-size:1.2rem;margin:0"><strong>${r.score.percent} %</strong> · ${esc(r.score.grade)}</p>
-      <p class="muted">${r.score.earned} von ${r.score.max} Punkten · Dauer ${fmtTime(r.durationSec)} · Szenario-Seed ${s.seed}</p>
-      ${bars}
+      <div class="score-hero">
+        ${ring}
+        <div class="score-meta">
+          <div class="grade">${esc(r.score.grade)}</div>
+          <p class="muted" style="margin:2px 0 10px">${r.score.earned} von ${r.score.max} Punkten · Dauer ${fmtTime(r.durationSec)} · Szenario-Seed ${s.seed}</p>
+          ${bars}
+        </div>
+      </div>
     </div>
     ${debriefSection("Kritische Fehler", r.criticalErrors, "critical")}
     ${debriefSection("Verpasst / Abzüge", r.missed, "missed")}
