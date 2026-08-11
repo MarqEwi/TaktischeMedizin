@@ -16,7 +16,8 @@
       "briefing": {
         "lage": "Ihre Patrouille gerät in einen Feuerüberfall. Ein Kamerad wird getroffen und geht zu Boden. Sie stehen noch unter wirksamem Feuer (Care Under Fire).",
         "auftrag": "Versorgen Sie den Verwundeten nach TCCC-Grundsätzen. MEDEVAC ist alarmiert.",
-        "patient": "Männlich, ca. 25 Jahre, Schutzweste und Helm getragen. Er schreit vor Schmerzen und hält sich das Bein."
+        "patient": "Männlich, ca. 25 Jahre, Schutzweste und Helm getragen. Er schreit vor Schmerzen und hält sich das Bein.",
+        "bild": "img/cases/feuergefecht-illustration.webp"
       },
       "injuries": {
         "forced": [
@@ -60,7 +61,8 @@
       "briefing": {
         "lage": "Ein Fahrzeug Ihres Konvois wurde durch eine IED zerstört. Die Lage ist gesichert, kein feindliches Feuer (Tactical Field Care).",
         "auftrag": "Versorgen Sie den schwerstverletzten Insassen. TACEVAC in ca. 8 Minuten verfügbar.",
-        "patient": "Männlich, ca. 30 Jahre, wurde aus dem Fahrzeug geschleudert. Massive Blutung am rechten Bein sichtbar."
+        "patient": "Männlich, ca. 30 Jahre, wurde aus dem Fahrzeug geschleudert. Massive Blutung am rechten Bein sichtbar.",
+        "bild": "img/cases/ied-illustration.webp"
       },
       "injuries": {
         "forced": [
@@ -137,7 +139,8 @@
       "briefing": {
         "lage": "Ihre Gruppe wird beim Passieren einer Ortskante aus einem Gebäude beschossen. Ein Kamerad geht getroffen zu Boden, Sie stehen noch unter wirksamem Feuer (Care Under Fire). Nach Feuerüberlegenheit ist mit einer gesicherten Lage zu rechnen.",
         "auftrag": "Arbeiten Sie das vollständige Tactical Trauma Assessment nach MARCH PAWS ab: Sofortmaßnahmen unter Feuer, systematische Untersuchung, Versorgung, Wiederbeurteilung, Evakuierung anfordern und übergeben.",
-        "patient": "Männlich, ca. 24 Jahre, Schutzweste und Helm getragen. Er presst die Hände auf den Oberschenkel und ruft um Hilfe. Weitere Verletzungen sind aus der Deckung nicht beurteilbar."
+        "patient": "Männlich, ca. 24 Jahre, Schutzweste und Helm getragen. Er presst die Hände auf den Oberschenkel und ruft um Hilfe. Weitere Verletzungen sind aus der Deckung nicht beurteilbar.",
+        "bild": "img/cases/tta-illustration.webp"
       },
       "injuries": {
         "forced": [
