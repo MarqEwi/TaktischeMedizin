@@ -224,6 +224,13 @@ button.secondary:hover:not(:disabled) { border-color: var(--accent-deep); }
 .vital.stale .value { color: var(--dim); }
 .vital.stale { opacity: 0.75; }
 
+/* ---------- Fallbild ---------- */
+.case-bild {
+  display: block; width: 100%;
+  border-radius: var(--r-md); border: 1px solid var(--line-strong);
+  margin: 4px 0 10px; box-shadow: var(--shadow);
+}
+
 /* ---------- Befunde ---------- */
 .finding {
   display: flex; align-items: baseline; gap: 8px;
@@ -496,6 +503,7 @@ dialog#skillcard-dialog::backdrop { background: rgba(5, 7, 4, 0.7); backdrop-fil
     </div>
     <div class="panel">
       <h3 style="margin-top:0">Befunde</h3>
+      <img id="sim-patient-bild" class="case-bild" style="display:none" alt="Lagebild des Patienten">
       <div id="sim-findings"><p class="muted">Noch keine Befunde erhoben.</p></div>
     </div>
     <div class="feedbackbar" id="sim-feedback"></div>

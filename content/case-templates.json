@@ -98,7 +98,8 @@
       "briefing": {
         "lage": "Am Beobachtungsposten fällt ein einzelner Schuss. Der Schütze ist abgezogen, die Lage ist gesichert (Tactical Field Care).",
         "auftrag": "Versorgen Sie den getroffenen Kameraden und bereiten Sie die Übergabe vor.",
-        "patient": "Männlich, ca. 22 Jahre, ansprechbar, hält sich den blutenden Oberschenkel."
+        "patient": "Männlich, ca. 22 Jahre, ansprechbar, hält sich den blutenden Oberschenkel.",
+        "bild": "img/cases/wache-illustration.webp"
       },
       "injuries": {
         "forced": [

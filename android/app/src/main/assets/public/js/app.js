@@ -104,9 +104,11 @@ function renderBriefing() {
   const objectives = state.mode === "training"
     ? `<h2>Lernziele</h2><div class="panel"><ul>${tpl.learningObjectives.map((o) => `<li>${esc(o)}</li>`).join("")}</ul></div>`
     : "";
+  const bild = tpl.briefing.bild ? `<img class="case-bild" src="${esc(tpl.briefing.bild)}" alt="Lagebild">` : "";
   $("#briefing-content").innerHTML = `
     <h2>${esc(tpl.name)}</h2>
     <p class="muted">${esc(tpl.untertitel)} · Rolle: ${esc(role.name)} · ${state.mode === "training" ? "Trainingsmodus" : "Simulationsmodus"}</p>
+    ${bild}
     <div class="panel"><h3 style="margin-top:0">Lage</h3><p>${esc(tpl.briefing.lage)}</p></div>
     <div class="panel"><h3 style="margin-top:0">Auftrag</h3><p>${esc(tpl.briefing.auftrag)}</p></div>
     <div class="panel"><h3 style="margin-top:0">Patient</h3><p>${esc(tpl.briefing.patient)}</p></div>
@@ -167,6 +169,16 @@ function renderSim() {
       <div class="value">${m ? esc(m.value) + (v.unit ? `<small> ${v.unit}</small>` : "") : "–"}</div>
       <div class="age">${m ? ageText(view.timeSec, m.atSec) : "nicht gemessen"}</div>`;
     vitalsWrap.append(box);
+  }
+
+  // Lagebild des Patienten (zeigt nur, was ohne Untersuchung ohnehin sichtbar wäre)
+  const tplBild = state.content.caseTemplates.get(view.caseId).briefing.bild;
+  const bildEl = $("#sim-patient-bild");
+  if (tplBild) {
+    bildEl.src = tplBild;
+    bildEl.style.display = "";
+  } else {
+    bildEl.style.display = "none";
   }
 
   // Befunde (nur freigeschaltete)

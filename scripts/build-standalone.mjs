@@ -26,9 +26,12 @@ const raw = {};
 for (const [file, key] of Object.entries(CONTENT_KEYS)) {
   raw[key] = JSON.parse(readFileSync(`content/${file}.json`, "utf8"))[key];
 }
-// Skillcard-Bilder einbetten
+// Skillcard- und Fallbilder einbetten
 for (const sc of raw.skillcards) {
   if (sc.bild) sc.bild = dataUri(sc.bild, "image/webp");
+}
+for (const tpl of raw.caseTemplates) {
+  if (tpl.briefing?.bild) tpl.briefing.bild = dataUri(tpl.briefing.bild, "image/webp");
 }
 
 // 2) Engine + UI zu einem Modul zusammensetzen (Importe/Exporte entfernen)
