@@ -1,6 +1,6 @@
 {
-	"appId": "de.mercwerk.sgtrechner",
-	"appName": "SGT Rechner",
+	"appId": "de.mercwerk.taktischemedizin",
+	"appName": "TakMed Trainer",
 	"webDir": "www",
 	"server": {
 		"androidScheme": "https"

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "beschreibung": "Konkrete Verletzungen. Jede Verletzung setzt beim Fallstart verdeckte Zustände ('states', optional zeitverzögert über 'delaySec'). 'visibleImmediately' markiert Zustände, deren Problem ohne Untersuchung offensichtlich ist (steuert die Prioritäts-Bewertung). 'immediateFindings' sind ab Fallbeginn sichtbare Befunde.",
+  "injuries": [
+    {
+      "id": "gsw_thigh",
+      "name": "Schusswunde Oberschenkel",
+      "bodyRegion": "untere Extremität",
+      "beschreibung": "Durchschuss des Oberschenkels mit Verletzung großer Gefäße.",
+      "states": [
+        { "stateId": "massive_extremity_bleeding", "severity": 6, "visibleImmediately": true },
+        { "stateId": "pain", "severity": 5 }
+      ],
+      "immediateFindings": ["f_bleed_thigh_massive", "f_gsw_thigh_entry"]
+    },
+    {
+      "id": "gsw_thorax",
+      "name": "Schusswunde Thorax",
+      "bodyRegion": "Thorax",
+      "beschreibung": "Penetrierende Thoraxverletzung; unter der Schutzausstattung zunächst nicht sichtbar.",
+      "states": [
+        { "stateId": "open_chest_wound", "severity": 4, "visibleImmediately": false },
+        { "stateId": "pain", "severity": 4 }
+      ],
+      "immediateFindings": []
+    },
+    {
+      "id": "amputation_lower_leg",
+      "name": "Traumatische Unterschenkel-Amputation",
+      "bodyRegion": "untere Extremität",
+      "beschreibung": "Explosionsbedingte Amputation mit massiver Blutung.",
+      "states": [
+        { "stateId": "massive_extremity_bleeding", "severity": 8, "visibleImmediately": true },
+        { "stateId": "pain", "severity": 7 }
+      ],
+      "immediateFindings": ["f_amputation"]
+    },
+    {
+      "id": "blast_concussion",
+      "name": "Explosionsbedingte Gehirnerschütterung",
+      "bodyRegion": "Kopf",
+      "beschreibung": "Primäre Blastwirkung mit zerebraler Beeinträchtigung.",
+      "states": [
+        { "stateId": "tbi_concussion", "severity": 4, "visibleImmediately": false }
+      ],
+      "immediateFindings": ["f_dazed"]
+    },
+    {
+      "id": "forearm_laceration",
+      "name": "Tiefe Risswunde Unterarm",
+      "bodyRegion": "obere Extremität",
+      "beschreibung": "Weichteilverletzung mit moderater Blutung; unter dem Uniformärmel verborgen – wird erst beim Körpercheck entdeckt.",
+      "states": [
+        { "stateId": "moderate_bleeding", "severity": 4, "visibleImmediately": false },
+        { "stateId": "pain", "severity": 3 }
+      ],
+      "immediateFindings": []
+    },
+    {
+      "id": "facial_injury_airway",
+      "name": "Gesichtsverletzung mit Atemwegsgefährdung",
+      "bodyRegion": "Kopf/Gesicht",
+      "beschreibung": "Weichteilverletzung im Gesicht; Blut gefährdet zunehmend die oberen Atemwege.",
+      "states": [
+        { "stateId": "airway_obstruction", "severity": 5, "visibleImmediately": true },
+        { "stateId": "pain", "severity": 4 }
+      ],
+      "immediateFindings": ["f_facial_wound"]
+    }
+  ]
+}

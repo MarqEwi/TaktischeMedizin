@@ -1,13 +1,15 @@
 {
-  "name": "sgt-rechner",
-  "version": "1.0.0",
+  "name": "taktische-medizin",
+  "version": "0.1.0",
   "private": true,
-  "description": "SGT Rechner – inoffizieller Zeitrechner für das Soldaten-Grundfitness-Tool der Bundeswehr (Web + Capacitor-App)",
+  "type": "module",
+  "description": "TakMed Trainer – TCCC-Trainings-App mit generischer Simulations-Engine (Web + Capacitor-App)",
   "scripts": {
     "sync-www": "node scripts/sync-www.mjs",
     "sync": "npm run sync-www",
     "cap:sync": "npm run sync-www && npx cap sync android",
     "cap:open": "npx cap open android",
+    "test:engine": "node --test tests/engine/*.test.mjs",
     "postinstall": "patch-package"
   },
   "dependencies": {

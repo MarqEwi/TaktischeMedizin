@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "beschreibung": "Mechanism of Injury. Definiert den Pool plausibler Verletzungen mit Auswahlgewichten. 'group': aus jeder Gruppe wird höchstens eine Verletzung zufällig gewählt (Ausschlusslogik). Erzwungene Verletzungen legt das Fall-Template fest; die Zufallsauswahl ergänzt aus diesem Pool.",
+  "mois": [
+    {
+      "id": "moi_gsw_firefight",
+      "name": "Schussverletzung im Feuergefecht",
+      "beschreibung": "Feindbeschuss mit Gewehrmunition auf kurze bis mittlere Distanz.",
+      "pool": [
+        { "injuryId": "gsw_thigh", "weight": 5, "group": "extremitaet" },
+        { "injuryId": "gsw_thorax", "weight": 4 },
+        { "injuryId": "forearm_laceration", "weight": 2, "group": "extremitaet" },
+        { "injuryId": "facial_injury_airway", "weight": 2 }
+      ]
+    },
+    {
+      "id": "moi_ied_blast",
+      "name": "IED-Explosion",
+      "beschreibung": "Sprengfalle mit Blast- und Splitterwirkung.",
+      "pool": [
+        { "injuryId": "amputation_lower_leg", "weight": 5 },
+        { "injuryId": "blast_concussion", "weight": 4 },
+        { "injuryId": "forearm_laceration", "weight": 3 }
+      ]
+    },
+    {
+      "id": "moi_gsw_overwatch",
+      "name": "Einzelschuss (Scharfschütze)",
+      "beschreibung": "Einzelner gezielter Schuss aus größerer Distanz.",
+      "pool": [
+        { "injuryId": "gsw_thigh", "weight": 5 },
+        { "injuryId": "forearm_laceration", "weight": 2 }
+      ]
+    }
+  ]
+}

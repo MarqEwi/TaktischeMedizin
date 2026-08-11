@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "beschreibung": "Verdeckte physiologische Zustände. Die UI sieht diese NIE direkt – nur Befunde (findings) und daraus generierte Vitalwerte. 'priority' folgt MARCH (1 = dringlichst). 'vitalsPerSeverity' sind additive Abweichungen vom Basiswert je Schweregrad-Punkt (Schweregrad 0–10, Gleitkomma). 'triggers' lösen bei Erreichen eines Schweregrads weitere Zustände aus.",
+  "hiddenStates": [
+    {
+      "id": "massive_extremity_bleeding",
+      "name": "Massive Extremitätenblutung",
+      "beschreibung": "Lebensbedrohliche äußere Blutung an einer Extremität. Wirkt physiologisch über den ausgelösten Volumenmangelschock (siehe progression-rules).",
+      "marchCategory": "M",
+      "priority": 1,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": {},
+      "avpuPenaltyPerSeverity": 0,
+      "findings": [
+        { "findingId": "f_blood_pool", "minSeverity": 7 }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "moderate_bleeding",
+      "name": "Moderate Blutung",
+      "beschreibung": "Nicht unmittelbar lebensbedrohliche Blutung (z. B. tiefe Risswunde). Führt unbehandelt langsam zu Volumenverlust.",
+      "marchCategory": "M",
+      "priority": 4,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": {},
+      "avpuPenaltyPerSeverity": 0,
+      "findings": [
+        { "findingId": "f_forearm_lac", "minSeverity": 1 }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "airway_obstruction",
+      "name": "Atemwegsverlegung",
+      "beschreibung": "Teilverlegung der oberen Atemwege (z. B. Blut, Weichteile, Bewusstseinstrübung).",
+      "marchCategory": "A",
+      "priority": 2,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": { "spo2": -3, "rr": 1 },
+      "avpuPenaltyPerSeverity": 0.25,
+      "findings": [
+        { "findingId": "f_blood_oropharynx", "minSeverity": 1 },
+        { "findingId": "f_snoring", "minSeverity": 3 }
+      ],
+      "triggers": [
+        { "atSeverity": 10, "addStateId": "cardiac_arrest", "severity": 10 }
+      ]
+    },
+    {
+      "id": "open_chest_wound",
+      "name": "Offene Thoraxverletzung",
+      "beschreibung": "Penetrierende Thoraxwunde mit Lufteintritt. Treibt unbehandelt die Entwicklung eines Spannungspneumothorax (siehe progression-rules).",
+      "marchCategory": "R",
+      "priority": 3,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": { "rr": 0.8, "spo2": -0.8 },
+      "avpuPenaltyPerSeverity": 0,
+      "findings": [
+        { "findingId": "f_chest_entry", "minSeverity": 1 },
+        { "findingId": "f_sucking_wound", "minSeverity": 3 }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "tension_pneumothorax",
+      "name": "Spannungspneumothorax",
+      "beschreibung": "Sich entwickelnder Spannungspneumothorax mit zunehmender respiratorischer und hämodynamischer Verschlechterung.",
+      "marchCategory": "R",
+      "priority": 3,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": { "hr": 5, "rr": 2, "sbp": -3, "spo2": -2.5 },
+      "avpuPenaltyPerSeverity": 0.2,
+      "findings": [
+        { "findingId": "f_breath_sound_reduced", "minSeverity": 2 },
+        { "findingId": "f_breathing_labored", "minSeverity": 3 },
+        { "findingId": "f_jvd", "minSeverity": 6 },
+        { "findingId": "f_cyanosis", "minSeverity": 7 }
+      ],
+      "triggers": [
+        { "atSeverity": 10, "addStateId": "cardiac_arrest", "severity": 10 }
+      ]
+    },
+    {
+      "id": "hypovolemic_shock",
+      "name": "Volumenmangelschock",
+      "beschreibung": "Hämorrhagischer Schock. Wird durch unkontrollierte Blutungen aufgebaut (progression-rules) und erzeugt die typischen Kreislaufbefunde.",
+      "marchCategory": "C",
+      "priority": 4,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": { "hr": 9, "sbp": -7, "rr": 1.2, "spo2": -0.6 },
+      "avpuPenaltyPerSeverity": 0.3,
+      "findings": [
+        { "findingId": "f_skin_cold_sweaty", "minSeverity": 2 },
+        { "findingId": "f_recap_slow", "minSeverity": 3 },
+        { "findingId": "f_pulse_weak", "minSeverity": 4 },
+        { "findingId": "f_pulse_absent_radial", "minSeverity": 7 }
+      ],
+      "triggers": [
+        { "atSeverity": 10, "addStateId": "cardiac_arrest", "severity": 10 }
+      ]
+    },
+    {
+      "id": "pain",
+      "name": "Starker Schmerz",
+      "beschreibung": "Schmerzreaktion; beeinflusst Herz- und Atemfrequenz.",
+      "marchCategory": null,
+      "priority": null,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": { "hr": 2.5, "rr": 0.8 },
+      "avpuPenaltyPerSeverity": 0,
+      "findings": [
+        { "findingId": "f_pain_severe", "minSeverity": 4 }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "tbi_concussion",
+      "name": "Gehirnerschütterung / leichtes SHT",
+      "beschreibung": "Explosionsbedingte zerebrale Beeinträchtigung ohne akute Lebensgefahr im MVP-Modell.",
+      "marchCategory": null,
+      "priority": null,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": {},
+      "avpuPenaltyPerSeverity": 0.5,
+      "findings": [
+        { "findingId": "f_confused", "minSeverity": 3 }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "hypothermia_risk",
+      "name": "Auskühlung",
+      "beschreibung": "Beginnende Hypothermie; wird durch Schock beschleunigt (Trauma-Triade).",
+      "marchCategory": "H",
+      "priority": 5,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": { "hr": -1 },
+      "avpuPenaltyPerSeverity": 0.1,
+      "findings": [
+        { "findingId": "f_shivering", "minSeverity": 3 }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "iatrogenic_pneumothorax",
+      "name": "Iatrogener Pneumothorax",
+      "beschreibung": "Komplikation nach nicht indizierter Entlastungspunktion.",
+      "marchCategory": "R",
+      "priority": null,
+      "maxSeverity": 10,
+      "vitalsPerSeverity": { "rr": 0.5, "spo2": -0.5 },
+      "avpuPenaltyPerSeverity": 0,
+      "findings": [],
+      "triggers": []
+    },
+    {
+      "id": "cardiac_arrest",
+      "name": "Kreislaufstillstand",
+      "beschreibung": "Terminaler Zustand. Beendet das Szenario (Outcome 'verstorben'). Vitalwerte werden von der Engine überschrieben.",
+      "marchCategory": null,
+      "priority": null,
+      "maxSeverity": 10,
+      "terminal": true,
+      "vitalsPerSeverity": {},
+      "avpuPenaltyPerSeverity": 0,
+      "findings": [
+        { "findingId": "f_no_life_signs", "minSeverity": 1 }
+      ],
+      "triggers": []
+    }
+  ]
+}

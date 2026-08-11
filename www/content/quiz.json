@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "beschreibung": "Wissensfragen (Multiple Choice) auf Basis der TCCC-Leitlinien 2026, der CLS-Skillcards und der CLS Course Map. 'caseIds' verknüpft Fragen mit Fällen (Anzeige nach dem Debriefing und in der Lernübersicht). 'korrekt' ist der Index der richtigen Option (0-basiert). 'erklaerung' wird nach der Antwort eingeblendet.",
+  "quizFragen": [
+    {
+      "id": "q_march_reihenfolge",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Wofür stehen die Buchstaben im MARCH-Schema – in der richtigen Reihenfolge?",
+      "optionen": [
+        "Massive Blutung – Atemweg – Respiration (Atmung) – Circulation (Kreislauf) – Hypothermie/Head",
+        "Monitoring – Atemweg – Reanimation – Circulation – Hitzeschutz",
+        "Massive Blutung – Atmung – Reassessment – Circulation – Hypothermie",
+        "Medikamente – Atemweg – Respiration – Circulation – Hypothermie"
+      ],
+      "korrekt": 0,
+      "erklaerung": "MARCH gibt die Behandlungsprioritäten vor: Massive Hemorrhage, Airway, Respiration, Circulation, Hypothermia/Head Injury. Die massive Blutung steht immer an erster Stelle – sie ist die häufigste vermeidbare Todesursache.",
+      "quelle": "TCCC-Leitlinien 2026, TFC-Struktur; CLS Course Map Modul 5"
+    },
+    {
+      "id": "q_cuf_massnahme",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Sie stehen unter wirksamem Feuer (Care Under Fire). Ihr Kamerad hat eine stark blutende Oberschenkelwunde. Welche Versorgung ist in dieser Phase vorgesehen?",
+      "optionen": [
+        "Wunde freilegen und einen Druckverband anlegen",
+        "Tourniquet über der Uniform anlegen, dann den Verletzten in Deckung verbringen",
+        "Sofort den Atemweg sichern, dann die Blutung versorgen",
+        "Mit jeder Versorgung warten, bis die Lage vollständig gesichert ist"
+      ],
+      "korrekt": 1,
+      "erklaerung": "In CUF beschränkt sich die Versorgung auf das Stillen lebensbedrohlicher Blutungen mit dem Tourniquet – über der Uniform, deutlich proximal bzw. „hoch und fest“ – und das Verbringen in Deckung. Das Atemwegsmanagement wird grundsätzlich bis TFC aufgeschoben.",
+      "quelle": "TCCC-Leitlinien 2026, CUF 6–7; Skillcard SC1-04"
+    },
+    {
+      "id": "q_tq_tfc",
+      "caseIds": ["case_tta_cls"],
+      "frage": "In der Phase Tactical Field Care beurteilen Sie das unter Feuer angelegte Tourniquet neu. Was ist korrekt?",
+      "optionen": [
+        "Das Tourniquet bleibt unverändert – es darf nie mehr angefasst werden",
+        "Das Tourniquet wird gelockert, um die Durchblutung zu schonen",
+        "Wunde freilegen, Wirksamkeit prüfen (Blutung steht, distaler Puls fehlt), ggf. ein zweites Tourniquet direkt auf der Haut ca. 10 cm oberhalb anlegen, Anlagezeit markieren",
+        "Das Tourniquet wird immer sofort durch einen Druckverband ersetzt"
+      ],
+      "korrekt": 2,
+      "erklaerung": "In TFC wird jedes Tourniquet neu beurteilt: freilegen, Wirksamkeit und distalen Puls prüfen; ein über der Uniform angelegtes TQ wird durch eines direkt auf der Haut (ca. 10 cm oberhalb der Wunde) ersetzt. Anlagezeit deutlich markieren und auf der TCCC-Karte dokumentieren. Eine TQ-Konversion nach mehr als 2 Stunden führt CLS-Personal nur unter Anleitung von medizinischem Fachpersonal durch.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 6a; CLS Course Map Modul 6"
+    },
+    {
+      "id": "q_koerpercheck",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Warum gehört der systematische Körpercheck (Blood Sweep) zwingend zum Tactical Trauma Assessment?",
+      "optionen": [
+        "Er ersetzt die Messung der Vitalparameter",
+        "Verletzungen unter Schutzweste und Uniform (z. B. eine penetrierende Thoraxwunde) sind sonst nicht erkennbar",
+        "Er ist nur bei bewusstlosen Patienten notwendig",
+        "Er dient ausschließlich der Dokumentation"
+      ],
+      "korrekt": 1,
+      "erklaerung": "Die Leitlinie fordert ausdrücklich die Suche nach unbemerkten Blutungen und weiteren Wunden. Ein- und Austrittswunden können unter Schutzausstattung verborgen sein – wer nicht systematisch absucht, übersieht sie und verliert wertvolle Zeit.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 3a und 14"
+    },
+    {
+      "id": "q_spannungspneu_zeichen",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Ihr Patient hat ein penetrierendes Thoraxtrauma. Welche Zeichenkombination lässt Sie einen Spannungspneumothorax vermuten?",
+      "optionen": [
+        "Langsame, tiefe Atmung und rosige Haut",
+        "Zunehmende Atemnot, einseitig abgeschwächtes Atemgeräusch, Sauerstoffsättigung unter 90 %",
+        "Starker Durst und Zittern",
+        "Schmerzen ausschließlich beim Husten"
+      ],
+      "korrekt": 1,
+      "erklaerung": "Bei relevantem Thoraxtrauma sprechen schwere oder zunehmende Atemnot bzw. Tachypnoe, ein einseitig fehlendes oder deutlich abgeschwächtes Atemgeräusch, SpO₂ < 90 %, Schock oder ein traumatischer Kreislaufstillstand für einen Spannungspneumothorax. Unbehandelt führt er über Atemnot und Schock zum Kreislaufstillstand.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 5a; CLS Course Map Modul 8"
+    },
+    {
+      "id": "q_seal_burping",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Sie haben eine offene Thoraxwunde mit einem Chest Seal verschlossen. Später entwickelt der Patient zunehmende Atemnot – Verdacht auf Spannungspneumothorax. Was ist Ihre ERSTE Maßnahme?",
+      "optionen": [
+        "Sofort mit der Herz-Lungen-Wiederbelebung beginnen",
+        "Das Chest Seal lüften (Burping) bzw. entfernen",
+        "Ein zweites Chest Seal über das erste kleben",
+        "Den Patienten flach auf den Rücken legen und abwarten"
+      ],
+      "korrekt": 1,
+      "erklaerung": "Liegt bereits ein Chest Seal, ist das Lüften oder Entfernen des Seals der erste Schritt der Behandlung – so kann eingeschlossene Luft entweichen. Erst danach folgt (durch entsprechend Ausgebildete) die Entlastungspunktion. Nach Seal-Anlage muss der Patient deshalb fortlaufend überwacht werden.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 5a/5b; Skillcard SC1-24, Schritt 2"
+    },
+    {
+      "id": "q_ndc_ort",
+      "caseIds": ["case_tta_cls"],
+      "frage": "An welchen Punktionsorten wird die Entlastungspunktion (NDC) durchgeführt?",
+      "optionen": [
+        "2. ICR in der vorderen Axillarlinie oder 5. ICR in der Medioklavikularlinie",
+        "Direkt neben dem Brustbein in Höhe der Brustwarze",
+        "5. ICR in der vorderen Axillarlinie oder 2. ICR in der Medioklavikularlinie",
+        "Unterhalb des Rippenbogens in der hinteren Axillarlinie"
+      ],
+      "korrekt": 2,
+      "erklaerung": "Die NDC erfolgt mit einem 10G- oder 14G-Nadel-Katheter-System (ca. 8 cm) im 5. ICR in der vorderen Axillarlinie ODER im 2. ICR in der Medioklavikularlinie – dort nie medial der Mamillarlinie. Die Nadel wird senkrecht zur Brustwand am Oberrand der unteren Rippe eingeführt, 5–10 s belassen, dann entfernt und der Katheter belassen.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 5a; Skillcard SC1-24"
+    },
+    {
+      "id": "q_schockzeichen",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Anhand welcher zwei Leitbefunde erkennen Sie auf CLS-Niveau einen hämorrhagischen Schock?",
+      "optionen": [
+        "Blutdruckmessung und Temperaturmessung",
+        "Veränderter Bewusstseinszustand (ohne SHT) und schwacher oder fehlender Radialispuls",
+        "Pupillengröße und Atemgeruch",
+        "Hautfarbe und Körpergröße"
+      ],
+      "korrekt": 1,
+      "erklaerung": "Die Leitlinie definiert die Schockerkennung über den veränderten Bewusstseinszustand (ohne Schädel-Hirn-Trauma als Ursache) und/oder einen schwachen oder fehlenden Radialispuls – beides ist ohne Geräte prüfbar. Kaltschweißige Haut und verlängerte Rekapillarisierung stützen den Verdacht.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 3d/6b; CLS Course Map Modul 10"
+    },
+    {
+      "id": "q_wound_packing",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Wie wird ein Hämostyptikum (z. B. Combat Gauze) korrekt angewendet?",
+      "optionen": [
+        "Locker auf die Wunde legen und sofort verbinden",
+        "Tief in die Wunde tamponieren und mindestens 3 Minuten direkten Druck halten",
+        "Nur äußerlich aufkleben wie ein Pflaster",
+        "In Wasser tränken und dann auflegen"
+      ],
+      "korrekt": 1,
+      "erklaerung": "Hämostyptika werden tief in die Wunde tamponiert und mit mindestens 3 Minuten direktem Druck angewendet. Stillt ein Produkt die Blutung nicht, wird es entfernt und durch ein neues ersetzt. Anschließend Druckverband anlegen und die Wirksamkeit reassessen.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 3b; CLS Course Map Modul 6/9"
+    },
+    {
+      "id": "q_cwmp",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Wann darf das Combat Wound Medication Pack (CWMP) eingesetzt werden?",
+      "optionen": [
+        "Bei jedem Verletzten, auch bewusstlos – die Tabletten werden unter die Zunge gelegt",
+        "Nur durch den Arzt persönlich",
+        "Beim wachen, schluckfähigen Verletzten – als Selbst- oder Kameradenhilfe",
+        "Nur nach vorheriger Gabe von Ketamin"
+      ],
+      "korrekt": 2,
+      "erklaerung": "Das CWMP (Paracetamol, Meloxicam, Suzetrigin) ist die orale Analgesie für den kampf-/einsatzfähigen bzw. wachen und schluckfähigen Verletzten und kann selbst eingenommen oder als Kameradenhilfe gegeben werden. Bewusstseinsgetrübte oder nicht schluckfähige Patienten erhalten keine oralen Medikamente – hier ist medizinisches Fachpersonal (Ketamin) gefragt.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 11; CLS Course Map Modul 14"
+    },
+    {
+      "id": "q_9line",
+      "caseIds": ["case_tta_cls"],
+      "frage": "Was übermitteln Sie mit dem MIST-Report an das Evakuierungselement?",
+      "optionen": [
+        "Marschroute, Identität, Stärke, Truppenteil",
+        "Mechanismus der Verletzung, Verletzungen (Injuries), Zeichen/Symptome (Signs), durchgeführte Maßnahmen (Treatments)",
+        "Munitionsbestand, Infrastruktur, Sanitätsmaterial, Tageszeit",
+        "Meldekopf, Instanz, Standort, Termin"
+      ],
+      "korrekt": 1,
+      "erklaerung": "MIST fasst die medizinischen Übergabeinformationen zusammen: Mechanism of Injury, Injuries, Signs/Symptoms, Treatments. Zusammen mit der 9-Line-Meldung (Anforderung der Evakuierung) stellt er sicher, dass das TACEVAC-Personal Zustand und bisherige Versorgung kennt – Minimum sind „stabil oder instabil“, erkannte Verletzungen und getroffene Maßnahmen.",
+      "quelle": "TCCC-Leitlinien 2026, TFC 18 / TACEVAC 1; CLS Course Map Modul 19"
+    }
+  ]
+}

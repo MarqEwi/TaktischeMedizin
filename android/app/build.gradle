@@ -10,10 +10,10 @@ if (keystorePropsFile.exists()) {
 }
 
 android {
-    namespace = "de.mercwerk.sgtrechner"
+    namespace = "de.mercwerk.taktischemedizin"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "de.mercwerk.sgtrechner"
+        applicationId "de.mercwerk.taktischemedizin"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 4

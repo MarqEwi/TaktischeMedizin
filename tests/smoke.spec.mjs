@@ -1,84 +1,125 @@
-// Smoke-Test: App lädt fehlerfrei, SGT-Auswertung und Speicherung funktionieren.
+// Smoke-Tests der Web-Version: App lädt ohne Konsolenfehler, der Kernablauf
+// (Rolle → Modus → Fall → Simulation → Debriefing) funktioniert, und im
+// localStorage landen nur Schlüssel mit dem eigenen Präfix.
 import { test, expect } from "@playwright/test";
 
-test("App lädt ohne Konsolenfehler und wertet das SGT korrekt aus", async ({ page }) => {
-  const errors = [];
-  page.on("console", m => { if (m.type() === "error") errors.push(m.text()); });
-  page.on("pageerror", e => errors.push(String(e)));
+test.describe("TakMed Trainer – Smoke", () => {
+  let consoleErrors;
 
-  await page.goto("/");
-  await expect(page).toHaveTitle(/SGT Rechner/);
-  await page.click("#ob-skip");
-  await page.click("#go-teilnehmer");
+  test.beforeEach(async ({ page }) => {
+    consoleErrors = [];
+    page.on("console", (msg) => {
+      if (msg.type() === "error") consoleErrors.push(msg.text());
+    });
+    page.on("pageerror", (err) => consoleErrors.push(String(err)));
+    await page.goto("/");
+  });
 
-  // Beispiel "Grün" aus Tabelle 2 der Handanweisung
-  await page.fill("#t-a", "48,2");
-  await page.fill("#t-b", "22,4");
-  await page.fill("#t-c", "60,6");
-  await page.fill("#t-d", "15,4");
-  await expect(page.locator("#t-r-total")).toHaveText("146,6 s");
-  await expect(page.locator("#t-r-grade")).toHaveText("Kategorie Grün");
+  test("App lädt ohne Konsolenfehler, Startbildschirm zeigt Rollen, Modi und Fälle", async ({ page }) => {
+    await expect(page.locator("#screen-start")).toBeVisible();
+    await expect(page.locator("#role-cards .card")).toHaveCount(2); // CLS + Combat Medic spielbar
+    await expect(page.locator("#mode-cards .card")).toHaveCount(2);
+    await expect(page.locator("#case-cards .card")).toHaveCount(4);
+    await expect(page.locator("#config-error")).toBeHidden();
+    expect(consoleErrors).toEqual([]);
+  });
 
-  // Ausklappbare Kategoriegrenzen (für alle gleich, ohne Wertungsgruppen)
-  await expect(page.locator("#t-limits-sum")).toContainText("für alle gleich");
-  await page.click("#t-limits-sum");
-  await expect(page.locator("#t-limits-body")).toContainText("≤ 55 s");   // SGT-A Grün
-  await expect(page.locator("#t-limits-body")).toContainText("≥ 100 s");  // SGT-C Rot
-  await expect(page.locator("#t-limits-body")).toContainText("vorläufig");
-  await page.click("#t-limits-sum");
+  test("Kompletter Ablauf: Fall starten, Maßnahmen durchführen, Debriefing erreichen", async ({ page }) => {
+    await page.locator("#role-cards .card", { hasText: "Combat Medic" }).click();
+    await page.locator("#mode-cards .card", { hasText: "Trainingsmodus" }).click();
+    await page.locator("#case-cards .card", { hasText: "Einzelschuss" }).click();
+    await page.locator("#btn-to-briefing").click();
+    await expect(page.locator("#screen-briefing")).toBeVisible();
+    await expect(page.locator("#briefing-content")).toContainText("Lage");
 
-  // Beispiel "Gelb" 1 aus Tabelle 3: nur SGT-A im gelben Bereich
-  await page.fill("#t-a", "56,3");
-  await page.fill("#t-b", "25,9");
-  await page.fill("#t-c", "55,0");
-  await page.fill("#t-d", "18,8");
-  await expect(page.locator("#t-r-total")).toHaveText("156,0 s");
-  await expect(page.locator("#t-r-grade")).toHaveText("Kategorie Gelb");
-  await expect(page.locator("#t-r-failhint")).toContainText("SGT-A");
+    await page.locator("#btn-start-sim").click();
+    await expect(page.locator("#screen-sim")).toBeVisible();
+    await expect(page.locator("#sim-phase")).toHaveText("TFC");
 
-  // Beispiel "Rot" 2 aus Tabelle 4: Abbruch bei SGT-D => obligatorisch Rot
-  await page.fill("#t-a", "54,5");
-  await page.fill("#t-b", "54,6");
-  await page.fill("#t-c", "101,9");
-  await page.selectOption("#t-abbruch", "d");
-  await expect(page.locator("#t-r-total")).toHaveText("Abbruch");
-  await expect(page.locator("#t-r-grade")).toHaveText("Kategorie Rot");
-  await expect(page.locator("#t-r-failhint")).toContainText("Abbruch");
+    // Sichtbarer Befund vorhanden, aber keine Vitalwerte vor der Messung
+    await expect(page.locator("#sim-findings")).toContainText("Blutung");
+    await expect(page.locator("#sim-vitals")).toContainText("nicht gemessen");
 
-  // Verlauf speichern + nur sgt_-Schlüssel im localStorage
-  await page.selectOption("#t-abbruch", "");
-  await page.fill("#t-a", "48,2");
-  await page.fill("#t-b", "22,4");
-  await page.fill("#t-c", "60,6");
-  await page.fill("#t-d", "15,4");
-  await page.click("#t-save");
-  await expect(page.locator("#t-history table")).toBeVisible();
-  const keys = await page.evaluate(() => Object.keys(localStorage));
-  expect(keys.every(k => k.startsWith("sgt_"))).toBeTruthy();
-  expect(keys.some(k => k.startsWith("pft_") || k.startsWith("bft_"))).toBeFalsy();
+    // Behandeln: Tourniquet, dann Puls messen
+    await page.locator(".tabs button", { hasText: "Maßnahmen" }).click();
+    await page.locator("#tab-treat .action-btn", { hasText: "Tourniquet anlegen" }).click();
+    await expect(page.locator("#sim-feedback")).toContainText("Blutung steht");
+    await page.locator(".tabs button", { hasText: "Untersuchen" }).click();
+    await page.locator("#tab-assess .action-btn", { hasText: "Puls tasten" }).click();
+    await expect(page.locator("#sim-vitals")).toContainText("/min");
 
-  expect(errors).toEqual([]);
-});
+    // Übergabe → Debriefing
+    page.once("dialog", (d) => d.accept());
+    await page.locator("#btn-handover").click();
+    await expect(page.locator("#screen-debrief")).toBeVisible();
+    await expect(page.locator("#debrief-content")).toContainText("Debriefing");
+    await expect(page.locator("#debrief-content")).toContainText("%");
+    expect(consoleErrors).toEqual([]);
+  });
 
-test("Prüfermodus: Testpersonen erfassen und kategorisieren", async ({ page }) => {
-  await page.goto("/");
-  await page.click("#ob-skip");
-  await page.click("#go-pruefer");
+  test("Rollenmodell: CLS hat Skillcard-Maßnahmen (inkl. NDC), aber keine Medic-Maßnahmen", async ({ page }) => {
+    await page.locator("#role-cards .card", { hasText: "Combat Lifesaver" }).click();
+    await page.locator("#mode-cards .card", { hasText: "Simulationsmodus" }).click();
+    await page.locator("#case-cards .card", { hasText: "Feuergefecht" }).click();
+    await page.locator("#btn-to-briefing").click();
+    await page.locator("#btn-start-sim").click();
+    await page.locator(".tabs button", { hasText: "Maßnahmen" }).click();
+    await expect(page.locator("#tab-treat")).toContainText("Entlastungspunktion"); // CLS-Skillcard SC1-24
+    await expect(page.locator("#tab-treat")).not.toContainText("TXA");
+    await expect(page.locator("#tab-treat")).toContainText("Tourniquet");
+  });
 
-  await page.click("#p-add");
-  await page.fill("#e-name", "Mustermann, A.");
-  await page.fill("#e-a", "69,5");
-  await page.fill("#e-b", "52,7");
-  await page.fill("#e-c", "76,9");
-  await page.fill("#e-d", "54,3");
-  await page.click("#e-save");
-  // Beispiel "Rot" 1 aus Tabelle 4: Gesamt 253,4 s, Kategorie Rot
-  await expect(page.locator("#p-tbody tr")).toHaveCount(1);
-  await expect(page.locator("#p-tbody")).toContainText("253,4");
-  await expect(page.locator("#p-tbody")).toContainText("Rot");
+  test("Skillcard-Dialog öffnet sich über das Info-Symbol", async ({ page }) => {
+    await page.locator("#role-cards .card", { hasText: "Combat Lifesaver" }).click();
+    await page.locator("#mode-cards .card", { hasText: "Trainingsmodus" }).click();
+    await page.locator("#case-cards .card", { hasText: "Einzelschuss" }).click();
+    await page.locator("#btn-to-briefing").click();
+    await page.locator("#btn-start-sim").click();
+    await page.locator(".tabs button", { hasText: "Maßnahmen" }).click();
+    await page.locator(".action-row", { hasText: "Tourniquet anlegen" }).locator(".info-btn").click();
+    await expect(page.locator("#skillcard-dialog")).toBeVisible();
+    await expect(page.locator("#sc-titel")).toContainText("Tourniquet");
+    await expect(page.locator("#sc-body")).toContainText("Knebel");
+    await page.locator("#sc-close").click();
+    await expect(page.locator("#skillcard-dialog")).toBeHidden();
+  });
 
-  // Aufbau-&-Ablauf-Tab öffnet und zeigt die vier Aufgaben
-  await page.click("#ptab-aufbau-btn");
-  await expect(page.locator("#pruefer-tab-aufbau")).toContainText("SGT-A");
-  await expect(page.locator("#pruefer-tab-aufbau")).toContainText("Heben und Absetzen");
+  test("localStorage enthält nur Schlüssel mit takmed_-Präfix", async ({ page }) => {
+    await page.locator("#role-cards .card", { hasText: "Combat Medic" }).click();
+    await page.locator("#mode-cards .card", { hasText: "Trainingsmodus" }).click();
+    await page.locator("#case-cards .card", { hasText: "Einzelschuss" }).click();
+    await page.locator("#btn-to-briefing").click();
+    await page.locator("#btn-start-sim").click();
+    page.once("dialog", (d) => d.accept());
+    await page.locator("#btn-handover").click();
+    await expect(page.locator("#screen-debrief")).toBeVisible();
+
+    const keys = await page.evaluate(() => Object.keys(localStorage));
+    expect(keys.length).toBeGreaterThan(0);
+    for (const key of keys) expect(key).toMatch(/^takmed_/);
+  });
+
+  test("Lernübersicht zeigt Skillcards und alle Fälle", async ({ page }) => {
+    await expect(page.locator("#role-cards .card").first()).toBeVisible(); // App fertig initialisiert
+    await page.locator("#btn-learn").click();
+    await expect(page.locator("#screen-learn")).toBeVisible();
+    await expect(page.locator("#learn-content .panel")).toHaveCount(6); // Skillcards + CLS-Ausbildungsprofil + 4 Fälle
+    await expect(page.locator("#learn-content .skillcard-link")).toHaveCount(7);
+    await expect(page.locator("#learn-content")).toContainText("Ausbildungsprofil Combat Lifesaver");
+  });
+
+  test("Wissensfragen: Quiz aus der Lernübersicht, Antwort mit Erklärung", async ({ page }) => {
+    await expect(page.locator("#role-cards .card").first()).toBeVisible();
+    await page.locator("#btn-learn").click();
+    await page.locator(".panel", { hasText: "CLS-Probefall" }).locator("button", { hasText: "Wissensfragen üben" }).click();
+    await expect(page.locator("#screen-quiz")).toBeVisible();
+    await expect(page.locator("#quiz-content .panel")).toHaveCount(11);
+
+    // Erste Frage (MARCH): richtige Antwort anklicken → grün + Erklärung
+    const frage1 = page.locator("#quiz-content .panel").first();
+    await frage1.locator(".quiz-option").first().click();
+    await expect(frage1.locator(".quiz-option.richtig")).toHaveCount(1);
+    await expect(frage1.locator(".quiz-erklaerung")).toContainText("Quelle");
+    await expect(frage1.locator(".quiz-option").first()).toBeDisabled();
+  });
 });

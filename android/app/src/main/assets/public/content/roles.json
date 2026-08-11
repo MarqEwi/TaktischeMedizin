@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "beschreibung": "Ausbildungsrollen. 'playable' steuert, ob die Rolle im MVP-Startbildschirm wählbar ist. Aktionen geben ihre Rollenfreigabe selbst an (actions.json → roles).",
+  "roles": [
+    {
+      "id": "asm",
+      "name": "All Service Member (ASM)",
+      "kurz": "ASM",
+      "beschreibung": "Basisniveau: Selbst- und Kameradenhilfe. Tourniquet und einfachste Maßnahmen.",
+      "playable": false,
+      "equipment": [
+        "Tourniquet",
+        "Verbandpäckchen"
+      ]
+    },
+    {
+      "id": "cls",
+      "name": "Combat Lifesaver (CLS)",
+      "kurz": "CLS",
+      "beschreibung": "Combat Lifesaver nach TCCC-CLS-Curriculum (40 h): MARCH-PAWS-Assessment, Blutungskontrolle, Atemweg, Chest Seal und Entlastungspunktion, Schockerkennung, Wärmeerhalt, CWMP, Monitoring, Kommunikation und Evakuierungsvorbereitung.",
+      "playable": true,
+      "equipment": [
+        "Tourniquet",
+        "Wound-Packing-Gaze",
+        "Druckverband",
+        "Chest Seal",
+        "Entlastungskanüle",
+        "NPA",
+        "Rettungsdecke",
+        "CWMP"
+      ],
+      "curriculum": {
+        "quelle": "TCCC CLS Course Map #TCCC-CLS-26-01 (25.01.2020), 40-Stunden-Kurs, 20 Module + Abschlussprüfung (Tactical Trauma Assessment)",
+        "module": [
+          "Grundlagen TCCC und die drei Versorgungsphasen",
+          "Sanitätsmaterial: JFAK- und CLS-Kit",
+          "Care Under Fire: Feuerüberlegenheit, Tourniquet unter Feuer, Retten und Schleppen",
+          "Tactical Field Care: Sicherung, Kommunikation, Triage",
+          "Tactical Trauma Assessment (MARCH PAWS)",
+          "Massive Blutungen: Tourniquet in TFC, Wound Packing, junktionale Blutungen",
+          "Atemweg: Lagerungsmanöver, stabile Seitenlage, NPA, Beutel-Masken-Beatmung",
+          "Atmung: Chest Seal und Entlastungspunktion (NDC)",
+          "Kreislauf und Blutungskontrolle: Druckverband, Beckenfraktur",
+          "Schockerkennung: Bewusstsein und Radialispuls",
+          "Hypothermieprophylaxe (passiv und aktiv)",
+          "Kopf- und Augenverletzungen (starrer Augenschutz)",
+          "Schmerzmittel (CWMP) und Antibiotika",
+          "Wundversorgung",
+          "Verbrennungen (Neuner-Regel, trockene Verbände)",
+          "Frakturen und Schienung",
+          "Monitoring: AVPU, Pulse, Atemfrequenz, Reassessment aller Maßnahmen",
+          "Kommunikation und Dokumentation: 9-Line, MIST, TCCC-Karte (DD 1380)",
+          "Evakuierungsverfahren und Vorbereitung des Verwundeten"
+        ]
+      }
+    },
+    {
+      "id": "medic",
+      "name": "Combat Medic",
+      "kurz": "Medic",
+      "beschreibung": "Sanitätspersonal: zusätzlich Auskultation, Pulsoxymetrie, TXA und Ketamin-Analgesie.",
+      "playable": true,
+      "equipment": [
+        "CLS-Ausstattung",
+        "Stethoskop",
+        "Pulsoxymeter",
+        "Entlastungskanüle",
+        "TXA"
+      ]
+    },
+    {
+      "id": "paramedic",
+      "name": "Combat Paramedic",
+      "kurz": "Paramedic",
+      "beschreibung": "Erweitertes Niveau (im MVP wie Combat Medic; vorbereitet für eigene Maßnahmen und Fälle).",
+      "playable": false,
+      "equipment": [
+        "Medic-Ausstattung",
+        "erweiterte Atemwegs- und Kreislaufmaßnahmen"
+      ]
+    }
+  ]
+}

@@ -23,11 +23,11 @@
 
         </activity>
 
-        <!-- Echte AdMob-App-ID der SGT-Rechner-App (MERCwerk-Konto).
+        <!-- Google-Test-AdMob-App-ID – vor Veröffentlichung durch die echte ID der TakMed-Trainer-App ersetzen.
              Fehlt dieser Eintrag, stürzt die App beim Start ab. -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7311552668399418~6376083493" />
+            android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
