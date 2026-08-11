@@ -16,3 +16,4 @@ android/app/google-services.json
 # Playwright
 test-results/
 playwright-report/
+dist/
