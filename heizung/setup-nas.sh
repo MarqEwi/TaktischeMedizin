@@ -58,18 +58,48 @@ EOF
 
 echo "== 5) Container starten =="
 cd "$BASE"
-if docker compose version >/dev/null 2>&1; then
-    docker compose up -d
+
+# Docker-Binaerdatei finden (bei UGOS liegt sie evtl. ausserhalb des PATH)
+DOCKER=""
+for CAND in "$(command -v docker 2>/dev/null || true)" \
+            /usr/bin/docker /usr/local/bin/docker /opt/bin/docker \
+            /usr/sbin/docker /sbin/docker; do
+    if [ -n "$CAND" ] && [ -x "$CAND" ]; then DOCKER="$CAND"; break; fi
+done
+if [ -z "$DOCKER" ]; then
+    DOCKER=$(find /usr /opt /volume1/@apps /var/packages -maxdepth 4 \
+        -type f -name docker -perm -u+x 2>/dev/null | head -n 1 || true)
+fi
+if [ -z "$DOCKER" ]; then
+    echo "FEHLER: Docker ist auf dieser NAS nicht installiert (Binaerdatei nicht gefunden)."
+    echo "        Bitte in der UGOS-Weboberflaeche das App Center oeffnen und die App"
+    echo "        'Docker' installieren, danach dieses Skript erneut ausfuehren."
+    exit 1
+fi
+echo "Docker gefunden: $DOCKER"
+
+# Ohne Root-Rechte auf den Docker-Daemon? Dann automatisch sudo davorsetzen.
+if ! "$DOCKER" info >/dev/null 2>&1; then
+    echo "Kein direkter Zugriff auf den Docker-Daemon - versuche sudo (ggf. Passwort eingeben)."
+    DOCKER="sudo $DOCKER"
+fi
+if ! $DOCKER info >/dev/null 2>&1; then
+    echo "FEHLER: Docker-Daemon nicht erreichbar. Laeuft die Docker-App in UGOS?"
+    exit 1
+fi
+
+if $DOCKER compose version >/dev/null 2>&1; then
+    $DOCKER compose -f "$BASE/docker-compose.yml" up -d
 elif command -v docker-compose >/dev/null 2>&1; then
-    docker-compose up -d
+    docker-compose -f "$BASE/docker-compose.yml" up -d
 else
-    echo "FEHLER: Weder 'docker compose' noch 'docker-compose' gefunden."
-    echo "        Bitte in der UGREEN-Oberflaeche die Docker-App installieren."
+    echo "FEHLER: Docker vorhanden, aber kein Compose-Plugin ('docker compose')."
+    echo "        Bitte die Docker-App in UGOS aktualisieren oder docker-compose installieren."
     exit 1
 fi
 
 echo "-- Laufende Container --"
-docker ps --filter name=homeassistant --filter name=mosquitto \
+$DOCKER ps --filter name=homeassistant --filter name=mosquitto \
     --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
 
 echo "== 6) Home Assistant auf Port 8123 testen =="
@@ -86,5 +116,5 @@ while [ $i -lt 24 ]; do
     sleep 5
 done
 echo "WARNUNG: Port 8123 antwortet noch nicht. Logs pruefen mit:"
-echo "         docker logs homeassistant"
+echo "         $DOCKER logs homeassistant"
 exit 1
